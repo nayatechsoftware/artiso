@@ -4,16 +4,40 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "Name of the person requesting a demo"
+      "description": "Full name of the person requesting a demo"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "First name as entered on the book demo form"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Last name as entered on the book demo form"
     },
     "email": {
       "type": "string",
       "format": "email",
-      "description": "Email address to reply to"
+      "description": "Work email address to reply to"
     },
     "company": {
       "type": "string",
       "description": "Brand or organisation the person belongs to"
+    },
+    "website": {
+      "type": "string",
+      "description": "Company website, optional"
+    },
+    "role_title": {
+      "type": "string",
+      "description": "Role or title of the person"
+    },
+    "country_code": {
+      "type": "string",
+      "description": "Country dialling code for the phone number, optional"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Mobile phone number, optional"
     },
     "message": {
       "type": "string",

@@ -16,7 +16,7 @@ export default function SolutionTabs() {
   };
 
   return (
-    <section className="shell py-20 md:py-28 lg:py-32">
+    <section id="platform" className="shell scroll-mt-24 py-20 md:py-28 lg:py-32">
       <Reveal>
         <p className="eyebrow">03 — Capabilities</p>
         <h2 className="display-xl mt-6 max-w-[20ch]">From the first idea to everything that follows</h2>

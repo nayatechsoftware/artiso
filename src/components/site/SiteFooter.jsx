@@ -1,16 +1,22 @@
-import { Instagram, Linkedin, Youtube } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { Instagram, Linkedin } from "lucide-react";
 
 const navLinks = [
-  { label: "Solutions", href: "#solutions" },
-  { label: "About Us", href: "#about" },
-  { label: "News", href: "#news" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", to: "/" },
+  { label: "Solutions", to: "/", hash: "platform" },
+  { label: "About Us", to: "/about-us" },
+  { label: "News", to: "/news" },
+  { label: "Careers", to: "/careers" },
 ];
 
 const socials = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/artiso-ai", Icon: Linkedin },
   { label: "Instagram", href: "https://www.instagram.com/artiso.ai", Icon: Instagram },
-  { label: "YouTube", href: "https://www.youtube.com/@artiso-ai", Icon: Youtube },
+];
+
+const legalLinks = [
+  { label: "Privacy Policy", to: "/privacy-policy" },
+  { label: "Cookie Policy", to: "/cookie-policy" },
 ];
 
 export default function SiteFooter() {
@@ -27,17 +33,18 @@ export default function SiteFooter() {
               hello@artiso.ai
             </a>
           </div>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+          <nav className="flex flex-wrap items-center gap-x-8 gap-y-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
+                to={link.to}
+                hash={link.hash}
                 className="text-[12px] uppercase tracking-[0.18em] text-black/60 transition-colors hover:text-black"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-          </div>
+          </nav>
         </div>
 
         <div className="flex flex-col gap-8 py-10 md:flex-row md:items-center md:justify-between">
@@ -56,22 +63,11 @@ export default function SiteFooter() {
             ))}
           </div>
           <div className="flex flex-wrap items-center gap-6 text-xs text-black/45">
-            <a
-              href="https://www.artiso.ai/privacy-policy"
-              target="_blank"
-              rel="noreferrer"
-              className="transition-colors hover:text-black"
-            >
-              Privacy policy
-            </a>
-            <a
-              href="https://www.artiso.ai/cookie-policy"
-              target="_blank"
-              rel="noreferrer"
-              className="transition-colors hover:text-black"
-            >
-              Cookie policy
-            </a>
+            {legalLinks.map((link) => (
+              <Link key={link.label} to={link.to} className="transition-colors hover:text-black">
+                {link.label}
+              </Link>
+            ))}
             <span>© {new Date().getFullYear()} ARTISO. All rights reserved.</span>
           </div>
         </div>

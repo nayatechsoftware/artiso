@@ -1,0 +1,215 @@
+const cdn = (id) =>
+  `https://cdn.sanity.io/images/mvgv7zsh/production/${id}?w=800&fit=max&auto=format`;
+
+export const newsFilters = [
+  { key: "all", label: "All" },
+  { key: "story", label: "Stories" },
+  { key: "press", label: "Press" },
+  { key: "event", label: "Events" },
+];
+
+export const newsItems = [
+  {
+    title: "AI start-up ARTISO raises over €3 million, GANNI founder becomes investor",
+    outlet: "TextilWirtschaft",
+    date: "2 November 2026",
+    kind: "press",
+    image: cdn("bebe915fedb9c1c5c04e83285adb709d724850d3-1200x1600.webp"),
+    href: "https://www.textilwirtschaft.de/tech/ki-start-up-artiso-sammelt-ueber-3-mio-euro-ein-ganni-gruender-wird-investor-438132",
+  },
+  {
+    title:
+      "ARTISO raises more than €3 million in pre-seed funding to build the AI operating system fashion will run on",
+    outlet: "",
+    date: "28 October 2026",
+    kind: "story",
+    image: cdn("fe63fd48159a295c2a7add5d98a61c99aa05ed2b-1200x1600.webp"),
+    href: "/news/artiso-pre-seed-round",
+    summary:
+      "Led by Criteria Venture Tech, with Swanlaab, Bynd Venture Capital, David Tomás and GANNI founder Nicolaj Reffstrup.",
+  },
+  {
+    title:
+      "ARTISO, founded by former Mango executives, closes a round led by Criteria for its AI for fashion teams",
+    outlet: "Cinco Días",
+    date: "28 October 2026",
+    kind: "press",
+    image: cdn("a9b17f5535f917e5301a45379724850d7f18c0f7-1200x1600.webp"),
+    href: "https://cincodias.elpais.com/companias/2026-10-28/artiso-creada-por-exdirectivos-de-mango-cierra-una-ronda-con-criteria-para-su-ia-de-equipos-de-moda.html",
+  },
+  {
+    title:
+      "Criteria invests in ARTISO, the former Mango executives’ startup bringing AI to fashion",
+    outlet: "El Español",
+    date: "28 October 2026",
+    kind: "press",
+    image: cdn("f7a6d2d97723dd35e38e7f6ffbe7590574d4df2b-1200x1600.webp"),
+    href: "https://www.elespanol.com/invertia/mis-finanzas/fondos-de-inversion/20261028/criteria-entra-artiso-startup-exdirectivos-mango-lleva-ia-mundo-moda/1003744437104_0.html",
+  },
+  {
+    title:
+      "Barcelona’s ARTISO raises over €3 million to scale its AI operating system for fashion teams",
+    outlet: "EU-Startups",
+    date: "28 October 2026",
+    kind: "press",
+    image: cdn("4a3852b1745e684ee65bafb4fd1d7642b68b5cf8-1200x1600.webp"),
+    href: "https://www.eu-startups.com/2026/10/barcelonas-artiso-raises-over-e3-million-to-scale-its-ai-operating-system-for-fashion-teams",
+  },
+  {
+    title:
+      "ARTISO, AI platform founded by three former Mango executives, raises over €3 million in pre-seed round",
+    outlet: "FashionUnited",
+    date: "28 October 2026",
+    kind: "press",
+    image: cdn("fb39217d6e1d4d91ec6f2844cdeaa8dedd0bcbc8-1200x1600.webp"),
+    href: "https://fashionunited.com/news/business/artiso-ai-platform-founded-by-3-former-mango-executives-raises-over-3-million-euros-in-pre-seed-round/2026102875417",
+  },
+  {
+    title: "ARTISO closes a round of more than €3 million led by Criteria Venture Tech",
+    outlet: "Forbes",
+    date: "28 October 2026",
+    kind: "press",
+    image: cdn("83d13fe98743a104c54bc4c0707c90c33a975308-1200x1600.webp"),
+    href: "https://forbes.es/ultima-hora/1057373/artiso-cierra-una-ronda-de-mas-de-3-millones-de-euros-liderada-por-criteria-venture-tech/",
+  },
+  {
+    title:
+      "ARTISO finds investors and raises more than €3 million in a pre-seed round for its AI",
+    outlet: "Modaes",
+    date: "28 October 2026",
+    kind: "press",
+    image: cdn("e3bc7c0d3f2681aa6ae4f14fb8b701c7c9e1e4be-1200x1600.webp"),
+    href: "https://www.modaes.com/equipamiento/artiso-encuentra-inversores-y-levanta-mas-de-tres-millones-en-una-ronda-pre-seed-para-su-ia",
+  },
+  {
+    title:
+      "NRF Europe makes Paris the European hub for global and technological retail",
+    outlet: "FashionUnited",
+    date: "18 September 2026",
+    kind: "press",
+    image: cdn("7c247ad748e866f072ff6b0793720972782f6021-1200x1600.webp"),
+    href: "https://fashionunited.uk/news/fairs/nrf-europe-makes-paris-the-european-hub-for-global-and-technological-retail/2026091890401",
+  },
+  {
+    title: "Sarah Iglesias: “We no longer approach AI as a pilot innovation”",
+    outlet: "Modaes",
+    date: "18 September 2026",
+    kind: "press",
+    image: cdn("aaaab7838e49f25d2c4e4e7515a4de83993bee4d-1200x1600.webp"),
+    href: "https://www.modaes.com/equipamiento/sarah-iglesias-artiso-ya-no-lo-planteamos-la-ia-como-una-innovacion-piloto",
+  },
+  {
+    title:
+      "AI makes its presence felt across every stage of the fashion value chain at trade show NRF Europe",
+    outlet: "FashionNetwork",
+    date: "15 September 2026",
+    kind: "press",
+    image: cdn("40b54ea5d5e5bda91f3c9353710d847aa761a8c4-1200x1600.webp"),
+    href: "https://ww.fashionnetwork.com/news/Ai-makes-its-presence-felt-across-every-stage-of-the-fashion-value-chain-at-trade-show-nrf-europe,1866652.html",
+  },
+  {
+    title: "AI algorithms are also in fashion this season in the textile industry",
+    outlet: "ABC",
+    date: "18 January 2026",
+    kind: "press",
+    image: cdn("ccd6944fce2ac19cdf83e9477a2ef0ba79ead175-1200x1600.webp"),
+    href: "https://www.abc.es/economia/algoritmos-llevan-temporada-industria-textil-20260118050135-nt.html",
+  },
+  {
+    title: "How fashion brands use AI in their creations",
+    outlet: "Le Monde",
+    date: "14 January 2026",
+    kind: "press",
+    image: cdn("90c64f489dcc1b69ce3045cb3b4a658aa6ef6189-1200x1600.webp"),
+    href: "https://www.lemonde.fr/m-styles/article/2026/01/14/comment-les-marques-de-mode-utilisent-l-ia-pour-leurs-creations_6662222_4497319.html",
+  },
+  {
+    title: "Keynote Tech Spirit BCN — AI, the new language of creativity",
+    outlet: "Tech Spirit Barcelona",
+    date: "11 December 2025",
+    kind: "event",
+    image: cdn("8dd2ccd8b1ff95f953337d5f9af36c35e91d647a-810x1080.webp"),
+    href: "https://web.archive.org/web/20260509135558/https://techspirit.barcelona/es/speakers/sarah-iglesias/",
+  },
+  {
+    title: "IESE Business School — How leaders approach AI transformation",
+    outlet: "LinkedIn",
+    date: "10 December 2025",
+    kind: "event",
+    image: cdn("c31014ccb307dc8348181a280e6ac188f901cefa-1200x1600.webp"),
+    href: "https://www.linkedin.com/posts/sarahiglesiashiller_iese-artiso-activity-7407325051210895360-JDkB",
+  },
+  {
+    title: "TEDx Rey Juan Carlos University",
+    outlet: "LinkedIn",
+    date: "27 November 2025",
+    kind: "event",
+    image: cdn("a76c44a2380b2c720ecb2685290b3e5ab5500a02-1200x1600.webp"),
+    href: "https://www.linkedin.com/posts/sarahiglesiashiller_artiso-tedx-fashiontech-activity-7402251582333005824-4kW9",
+  },
+  {
+    title: "ARTISO awarded leading startup at Juno House",
+    outlet: "Netmentora Catalunya",
+    date: "20 November 2025",
+    kind: "event",
+    image: cdn("12dc53b3fa4d675b0a74859a9e79b5bee48671fc-801x1068.webp"),
+    href: "https://www.netmentoracatalunya.org/post/cuando-falta-diversidad-lo-que-se-pierde-no-es-representaci%C3%B3n-es-inteligencia",
+  },
+  {
+    title: "ARTISO cofounders join AI roundtable at Reimagine Textile Day 2025",
+    outlet: "La Vanguardia",
+    date: "31 October 2025",
+    kind: "press",
+    image: cdn("0cc425d44f35a32ac2b2df9c84bd00870b95511e-864x1152.webp"),
+    href: "https://www.lavanguardia.com/economia/innovacion/20251031/11217142/reimagine-textile-day-celebra-quinta-edicion-centrando-foco-inteligencia-artificial-reciclaje-moda-brl.html",
+  },
+  {
+    title: "ARTISO, a startup serving the fashion industry",
+    outlet: "La Vanguardia",
+    date: "30 August 2025",
+    kind: "press",
+    image: cdn("314796cd60b08da1ae544addc0fd04e47cbc9561-1200x1600.webp"),
+    href: "https://www.lavanguardia.com/economia/emprendedores/20250830/10997505/startup-servicio-moda-artiso.html",
+  },
+  {
+    title:
+      "Mango Takes a Cue from Innovation: Former Executives Launch AI Fashion Design Platform",
+    outlet: "Modaes",
+    date: "9 July 2025",
+    kind: "press",
+    image: cdn("3416c2122d96061e372761af84c35b33ef49386a-1200x1600.webp"),
+    href: "https://www.modaes.com/global/back-stage/mango-as-a-lab-three-former-managers-launch-ai-platform-for-fashion-design",
+  },
+  {
+    title: "A Spanish startup launches AI tool to streamline fashion’s creative engine",
+    outlet: "FashionUnited",
+    date: "8 July 2025",
+    kind: "press",
+    image: cdn("09515a07c6e83476c0f78a8f17f775328be44ab5-1200x1600.webp"),
+    href: "https://fashionunited.uk/news/fashion/a-spanish-startup-launches-ai-tool-to-streamline-fashions-creative-engine/2025070882691",
+  },
+  {
+    title: "Shaping the Future of Fashion with AI: Insights from MedIA-Talks",
+    outlet: "LinkedIn",
+    date: "28 May 2025",
+    kind: "event",
+    image: cdn("99c8abf3b24d6607a82cce6e7a4a2003ccdb5ed6-1200x1600.webp"),
+    href: "https://www.linkedin.com/posts/media-markt-espa%C3%B1a_letsgomediamarkt-mediamarktpeople-activity-7333481132430143493-Uxjh/",
+  },
+  {
+    title: "How AI Is Changing the Fashion Industry",
+    outlet: "MinMote",
+    date: "13 December 2024",
+    kind: "press",
+    image: cdn("1d56fb714e789b6fb4ce8a2b02aaae932a19c1cd-714x952.webp"),
+    href: "https://www.minmote.no/nyheter/a/zAV851/ai-mote-shopping",
+  },
+  {
+    title: "Pioneering AI-Generated Campaigns in Fashion Design",
+    outlet: "LinkedIn",
+    date: "11 July 2024",
+    kind: "press",
+    image: cdn("57ec90636c579facb6d3a4042856c1e73805a8b8-810x1080.webp"),
+    href: "https://www.linkedin.com/posts/sarahiglesiashiller_mango-corporate-innovation-activity-7217045026579636224-6a35/",
+  },
+];

@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import SiteHeader from "@/components/site/SiteHeader";
 import Hero from "@/components/site/Hero";
 import TeamsSection from "@/components/site/TeamsSection";
 import JourneyRail from "@/components/site/JourneyRail";
@@ -10,9 +9,8 @@ import ImpactStats from "@/components/site/ImpactStats";
 import TrustedMarquee from "@/components/site/TrustedMarquee";
 import Testimonials from "@/components/site/Testimonials";
 import DemoForm from "@/components/site/DemoForm";
-import SiteFooter from "@/components/site/SiteFooter";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_site/")({
   head: () => ({
     meta: [
       { title: "ARTISO — Shaping the Future of Fashion" },
@@ -28,21 +26,17 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <div className="min-h-screen bg-[#f4f4f4] text-[#121212]">
-      <SiteHeader />
-      <main>
-        <Hero />
-        <TeamsSection />
-        <JourneyRail />
-        <SolutionTabs />
-        <WorkflowGrid />
-        <MemoryArchitecture />
-        <ImpactStats />
-        <TrustedMarquee />
-        <Testimonials />
-        <DemoForm />
-      </main>
-      <SiteFooter />
-    </div>
+    <>
+      <Hero />
+      <TeamsSection />
+      <JourneyRail />
+      <SolutionTabs />
+      <WorkflowGrid />
+      <MemoryArchitecture />
+      <ImpactStats />
+      <TrustedMarquee />
+      <Testimonials />
+      <DemoForm />
+    </>
   );
 }

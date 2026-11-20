@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { label: "Solutions", href: "#solutions" },
-  { label: "About Us", href: "#about" },
-  { label: "News", href: "#news" },
-  { label: "Contact", href: "#contact" },
+  { label: "Solutions", to: "/", hash: "platform" },
+  { label: "About Us", to: "/about-us" },
+  { label: "News", to: "/news" },
+  { label: "Contact", to: "/", hash: "contact" },
 ];
 
 export default function SiteHeader() {
@@ -35,25 +36,26 @@ export default function SiteHeader() {
       )}
     >
       <div className="shell flex h-[70px] items-center justify-between gap-6 md:h-[88px]">
-        <a href="#top" className="wordmark text-[clamp(1.45rem,2.3vw,2.1rem)]" aria-label="ARTISO home">
+        <Link to="/" hash="top" className="wordmark text-[clamp(1.45rem,2.3vw,2.1rem)]" aria-label="ARTISO home">
           ARTISO
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
           {links.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={link.to}
+              hash={link.hash}
               className="text-[12px] uppercase tracking-[0.18em] text-black/65 transition-colors hover:text-black"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a href="#contact" className="pill hidden lg:inline-flex">
+        <Link to="/book-demo" className="pill hidden lg:inline-flex">
           Book Your Demo
-        </a>
+        </Link>
 
         <button
           type="button"
@@ -72,7 +74,9 @@ export default function SiteHeader() {
         )}
       >
         <div className="flex items-center justify-between">
-          <span className="wordmark text-[1.6rem]">ARTISO</span>
+          <Link to="/" hash="top" onClick={() => setOpen(false)} className="wordmark text-[1.6rem]">
+            ARTISO
+          </Link>
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -85,20 +89,28 @@ export default function SiteHeader() {
 
         <nav className="mt-14 flex flex-col">
           {links.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={link.to}
+              hash={link.hash}
               onClick={() => setOpen(false)}
               className="border-t border-black/12 py-5 text-2xl font-light tracking-tight text-black"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
+          <Link
+            to="/careers"
+            onClick={() => setOpen(false)}
+            className="border-t border-black/12 py-5 text-2xl font-light tracking-tight text-black"
+          >
+            Careers
+          </Link>
         </nav>
 
-        <a href="#contact" onClick={() => setOpen(false)} className="pill mt-auto w-full">
+        <Link to="/book-demo" onClick={() => setOpen(false)} className="pill mt-auto w-full">
           Book Your Demo
-        </a>
+        </Link>
       </div>
     </header>
   );
