@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import Wordmark from "@/components/site/Wordmark";
-import { heroCollage } from "@/data/site";
+import HeroCollage from "@/components/site/HeroCollage";
 
 const LINKS = [
   { label: "Solutions", to: "/", hash: "platform" },
@@ -78,12 +78,7 @@ export default function Hero() {
           </Link>
         </nav>
 
-        <div className="hero-collage">
-          <img
-            src={heroCollage}
-            alt="A collage of fashion photographs and pattern drawings"
-          />
-        </div>
+        <HeroCollage />
 
         <div className="hero-foot">
           <div className="hero-cue" ref={cueRef}>

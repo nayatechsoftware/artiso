@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Hero from "@/components/site/Hero";
+import FilmSection from "@/components/site/FilmSection";
 import TeamsSection from "@/components/site/TeamsSection";
 import JourneyDial from "@/components/site/JourneyDial";
 import SolutionTabs from "@/components/site/SolutionTabs";
@@ -27,6 +28,7 @@ function Home() {
   return (
     <>
       <Hero />
+      <FilmSection />
       <TeamsSection />
       <JourneyDial />
       <SolutionTabs />
