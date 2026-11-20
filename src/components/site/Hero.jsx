@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import Wordmark from "@/components/site/Wordmark";
-import HeroStack from "@/components/site/HeroStack";
+import HeroCluster from "@/components/site/HeroCluster";
 
 const LINKS = [
   { label: "Solutions", to: "/", hash: "platform" },
@@ -78,7 +78,7 @@ export default function Hero() {
           </Link>
         </nav>
 
-        <HeroStack />
+        <HeroCluster />
 
         <div className="hero-foot">
           <div className="hero-cue" ref={cueRef}>
