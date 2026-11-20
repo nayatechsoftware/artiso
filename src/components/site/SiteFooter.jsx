@@ -63,6 +63,13 @@ export default function SiteFooter() {
             ))}
           </div>
           <div className="flex flex-wrap items-center gap-6 text-xs text-black/45">
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event("artiso:open-cookie-settings"))}
+              className="transition-colors duration-300 hover:text-black"
+            >
+              Cookie settings
+            </button>
             {legalLinks.map((link) => (
               <Link key={link.label} to={link.to} className="transition-colors hover:text-black">
                 {link.label}
