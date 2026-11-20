@@ -12,7 +12,7 @@ function useCountUp(target, start) {
       return;
     }
     let frame;
-    const duration = 1400;
+    const duration = 1800;
     const began = performance.now();
     const tick = (now) => {
       const progress = Math.min((now - began) / duration, 1);
@@ -30,7 +30,7 @@ function useCountUp(target, start) {
 function Stat({ stat, start, index }) {
   const value = useCountUp(stat.value, start);
   return (
-    <Reveal delay={index * 90} className="border-t border-black/12 pt-6">
+    <Reveal delay={index * 150} className="border-t border-black/12 pt-6">
       <div className="flex items-baseline gap-1">
         <span className="text-[clamp(3.4rem,7vw,6rem)] font-light leading-none tracking-[-0.04em] text-black tabular-nums">
           {value}
@@ -59,7 +59,7 @@ export default function ImpactStats() {
           }
         });
       },
-      { threshold: 0.25 }
+      { threshold: 0.4 }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -68,7 +68,7 @@ export default function ImpactStats() {
   return (
     <section id="news" ref={ref} className="shell py-20 md:py-28 lg:py-36">
       <Reveal>
-        <p className="eyebrow">06 — Impact</p>
+        <p className="eyebrow">05 — Impact</p>
         <h2 className="display-xl mt-6 max-w-[14ch]">The Impact Behind The Innovation</h2>
       </Reveal>
 

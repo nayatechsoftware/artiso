@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Hero from "@/components/site/Hero";
 import TeamsSection from "@/components/site/TeamsSection";
-import JourneyRail from "@/components/site/JourneyRail";
+import JourneyDial from "@/components/site/JourneyDial";
 import SolutionTabs from "@/components/site/SolutionTabs";
-import WorkflowGrid from "@/components/site/WorkflowGrid";
 import MemoryArchitecture from "@/components/site/MemoryArchitecture";
 import ImpactStats from "@/components/site/ImpactStats";
 import TrustedMarquee from "@/components/site/TrustedMarquee";
@@ -29,9 +28,8 @@ function Home() {
     <>
       <Hero />
       <TeamsSection />
-      <JourneyRail />
+      <JourneyDial />
       <SolutionTabs />
-      <WorkflowGrid />
       <MemoryArchitecture />
       <ImpactStats />
       <TrustedMarquee />

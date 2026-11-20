@@ -1,18 +1,21 @@
 import { useState } from "react";
-import { Image } from "@/components/ui/image";
+import { ChevronDown } from "lucide-react";
 import Reveal from "@/components/site/Reveal";
+import CrossfadeImage from "@/components/site/CrossfadeImage";
 import { solutionTabs } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 export default function SolutionTabs() {
-  const [tabIndex, setTabIndex] = useState(0);
-  const [itemIndex, setItemIndex] = useState(0);
-  const tab = solutionTabs[tabIndex];
-  const item = tab.items[itemIndex] ?? tab.items[0];
+  const [openIndex, setOpenIndex] = useState(0);
+  const [active, setActive] = useState(solutionTabs[0].items[0]);
 
-  const selectTab = (index) => {
-    setTabIndex(index);
-    setItemIndex(0);
+  const toggle = (index) => {
+    if (openIndex === index) {
+      setOpenIndex(-1);
+      return;
+    }
+    setOpenIndex(index);
+    setActive(solutionTabs[index].items[0]);
   };
 
   return (
@@ -22,65 +25,98 @@ export default function SolutionTabs() {
         <h2 className="display-xl mt-6 max-w-[20ch]">From the first idea to everything that follows</h2>
       </Reveal>
 
-      <div className="no-scrollbar mt-12 flex gap-8 overflow-x-auto border-b border-black/12">
-        {solutionTabs.map((entry, index) => (
-          <button
-            key={entry.id}
-            type="button"
-            onClick={() => selectTab(index)}
-            className={cn(
-              "relative shrink-0 pb-4 text-[13px] uppercase tracking-[0.16em] transition-colors",
-              index === tabIndex ? "text-black" : "text-black/40 hover:text-black/70"
-            )}
-          >
-            {entry.label}
-            <span
-              className={cn(
-                "absolute inset-x-0 -bottom-px h-px bg-black transition-opacity duration-300",
-                index === tabIndex ? "opacity-100" : "opacity-0"
-              )}
-            />
-          </button>
-        ))}
-      </div>
-
-      <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
-        <div className="order-2 lg:order-1 lg:col-span-4">
-          <ul>
-            {tab.items.map((entry, index) => (
-              <li key={entry.title}>
+      <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-14">
+        <div className="group/groups lg:col-span-6">
+          {solutionTabs.map((group, index) => {
+            const open = openIndex === index;
+            return (
+              <div key={group.id} className="border-t border-black/12 last:border-b">
                 <button
                   type="button"
-                  onClick={() => setItemIndex(index)}
+                  onClick={() => toggle(index)}
+                  aria-expanded={open}
+                  className="flex w-full items-center justify-between gap-6 py-5 text-left transition-opacity duration-300 group-hover/groups:opacity-50 hover:!opacity-100"
+                >
+                  <span className="flex items-baseline gap-4 md:gap-6">
+                    <span className="eyebrow tabular-nums">0{index + 1}</span>
+                    <span
+                      className={cn(
+                        "text-lg font-light tracking-tight transition-colors duration-300 md:text-xl",
+                        open ? "text-black" : "text-black/70"
+                      )}
+                    >
+                      {group.label}
+                    </span>
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      "h-4 w-4 shrink-0 text-black/50 transition-transform duration-500 ease-out",
+                      open && "rotate-180 text-black"
+                    )}
+                    strokeWidth={1.3}
+                  />
+                </button>
+
+                <div
                   className={cn(
-                    "flex w-full items-center justify-between gap-4 border-t border-black/12 py-4 text-left text-[15px] transition-colors md:text-base",
-                    index === itemIndex ? "text-black" : "text-black/45 hover:text-black/80"
+                    "grid transition-[grid-template-rows] duration-500 ease-out",
+                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                   )}
                 >
-                  {entry.title}
-                  <span
-                    className={cn(
-                      "text-xs transition-opacity",
-                      index === itemIndex ? "opacity-100" : "opacity-0"
-                    )}
-                  >
-                    ●
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
+                  <div className="overflow-hidden">
+                    <ul className="pb-6 pl-9 md:pl-12">
+                      {group.items.map((item) => {
+                        const isActive = active.title === item.title;
+                        return (
+                          <li key={item.title}>
+                            <button
+                              type="button"
+                              onClick={() => setActive(item)}
+                              className={cn(
+                                "flex w-full items-center justify-between gap-4 py-2 text-left text-[13px] transition-colors duration-300 md:text-sm",
+                                isActive ? "text-black" : "text-black/45 hover:text-black/80"
+                              )}
+                            >
+                              <span className="relative inline-block">
+                                {item.title}
+                                <span
+                                  className={cn(
+                                    "absolute -bottom-0.5 left-0 h-px w-full origin-left bg-black transition-transform duration-300 ease-out",
+                                    isActive ? "scale-x-100" : "scale-x-0"
+                                  )}
+                                />
+                              </span>
+                              <span
+                                className={cn(
+                                  "text-[8px] transition-opacity duration-300",
+                                  isActive ? "opacity-100" : "opacity-0"
+                                )}
+                              >
+                                ●
+                              </span>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="order-1 lg:order-2 lg:col-span-8">
-          <div className="grid gap-6 sm:grid-cols-[1.15fr_1fr] sm:items-end">
-            <div key={item.image} className="fade-up relative aspect-[4/5] w-full overflow-hidden bg-black/5">
-              <Image src={item.image} alt={item.title} className="h-full w-full" fittingType="fill" />
-            </div>
-            <div key={item.title} className="fade-up pb-2">
-              <h3 className="text-2xl font-light tracking-tight text-black md:text-3xl">{item.title}</h3>
-              <p className="mt-4 max-w-sm text-[16px] leading-relaxed text-black/60">{item.text}</p>
-            </div>
+        <div className="lg:col-span-6">
+          <CrossfadeImage
+            src={active.image}
+            alt={active.title}
+            className="aspect-[4/5] w-full"
+          />
+          <div className="mt-6 border-t border-black/12 pt-5">
+            <h3 className="text-2xl font-light tracking-tight text-black md:text-3xl">
+              {active.title}
+            </h3>
+            <p className="mt-4 max-w-md text-[16px] leading-relaxed text-black/60">{active.text}</p>
           </div>
         </div>
       </div>

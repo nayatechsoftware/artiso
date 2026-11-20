@@ -164,6 +164,27 @@ export const solutionTabs = [
     ],
   },
   {
+    id: "visual-content",
+    label: "Visual Content",
+    items: [
+      {
+        title: "Campaigns & Content",
+        image: images.campaigns,
+        text: "Campaign and e-commerce imagery generated from the actual product, in your brand's visual language.",
+      },
+      {
+        title: "AI Avatar",
+        image: images.aiAvatar,
+        text: "Cast, dress and shoot a look on an AI model before a single sample exists.",
+      },
+      {
+        title: "Product on Model",
+        image: images.styling,
+        text: "Place finished pieces on a model, styled and lit to match the rest of the season.",
+      },
+    ],
+  },
+  {
     id: "merchandising",
     label: "Merchandising",
     items: [

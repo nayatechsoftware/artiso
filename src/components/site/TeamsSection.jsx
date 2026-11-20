@@ -19,7 +19,7 @@ export default function TeamsSection() {
 
         <div className="lg:col-span-6 lg:col-start-7">
           {teams.map((team, index) => (
-            <Reveal key={team.name} delay={index * 60}>
+            <Reveal key={team.name} delay={index * 100}>
               <div className="group flex items-start justify-between gap-6 border-t border-black/12 py-6 md:py-7">
                 <div className="flex items-baseline gap-5 md:gap-8">
                   <span className="eyebrow pt-1 tabular-nums">0{index + 1}</span>
