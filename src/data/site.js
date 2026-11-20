@@ -263,7 +263,12 @@ export const stats = [
   },
 ];
 
-export const brands = ["GANNI", "MANGO", "ASOS", "TRENT", "DEICHMANN", "TATA"];
+export const brands = [
+  { name: "RCL", style: "tight" },
+  { name: "Westside", style: "serif" },
+  { name: "MAS", style: "tight", note: "Change is Courage" },
+  { name: "Trent Limited", style: "wide" },
+];
 
 export const testimonials = [
   {

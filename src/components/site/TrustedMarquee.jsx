@@ -2,74 +2,89 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Reveal from "@/components/site/Reveal";
 import { brands } from "@/data/site";
+import { cn } from "@/lib/utils";
 
-const SPEED = 40;
+const MARKS = {
+  tight:
+    "font-heading text-[clamp(1.35rem,2.2vw,1.85rem)] font-semibold uppercase tracking-[0.26em]",
+  serif: "font-display text-[clamp(1.4rem,2.4vw,2rem)] font-normal tracking-[0.02em]",
+  wide:
+    "font-heading text-[clamp(0.95rem,1.6vw,1.25rem)] font-medium uppercase tracking-[0.34em]",
+};
+
+function BrandMark({ brand }) {
+  return (
+    <span className="flex flex-col items-center gap-2 text-black/40 transition-colors duration-300 hover:text-black/70">
+      <span className={MARKS[brand.style]}>{brand.name}</span>
+      {brand.note ? (
+        <span className="text-[8px] uppercase tracking-[0.32em] text-black/35">{brand.note}</span>
+      ) : null}
+    </span>
+  );
+}
 
 export default function TrustedMarquee() {
   const trackRef = useRef(null);
-  const [duration, setDuration] = useState(42);
-  const [step, setStep] = useState(220);
-  const [nudge, setNudge] = useState(0);
-  const row = [...brands, ...brands];
+  const [overflowing, setOverflowing] = useState(false);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-    const measure = () => {
-      const half = track.scrollWidth / 2;
-      if (!half) return;
-      setDuration(half / SPEED);
-      setStep(half / brands.length);
-    };
+    const measure = () => setOverflowing(track.scrollWidth > track.clientWidth + 4);
     measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    const observer = new ResizeObserver(measure);
+    observer.observe(track);
+    return () => observer.disconnect();
   }, []);
 
+  const nudge = (direction) => {
+    const track = trackRef.current;
+    if (!track) return;
+    track.scrollBy({ left: direction * track.clientWidth * 0.8, behavior: "smooth" });
+  };
+
   return (
-    <section className="border-y border-black/10 py-14 md:py-16">
+    <section className="border-t border-black/10 py-14 md:py-16">
       <Reveal className="shell">
-        <p className="eyebrow text-center">Trusted by</p>
+        <p className="eyebrow">Trusted by</p>
       </Reveal>
 
-      <div className="relative mt-8 overflow-hidden">
-        <div
-          className="transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(${nudge}px)` }}
-        >
+      <div
+        ref={trackRef}
+        className="no-scrollbar mt-10 flex snap-x snap-mandatory items-center gap-12 overflow-x-auto px-5 md:justify-between md:gap-6 md:px-12"
+      >
+        {brands.map((brand) => (
           <div
-            ref={trackRef}
-            className="marquee-track flex w-max items-center gap-16 pr-16 md:gap-24 md:pr-24"
-            style={{ animationDuration: `${duration}s` }}
+            key={brand.name}
+            className="flex shrink-0 snap-start items-center justify-center md:flex-1"
           >
-            {row.map((brand, index) => (
-              <span
-                key={`${brand}-${index}`}
-                className="whitespace-nowrap text-[clamp(1.1rem,2vw,1.6rem)] font-medium uppercase tracking-[0.22em] text-black/30 grayscale"
-              >
-                {brand}
-              </span>
-            ))}
+            <BrandMark brand={brand} />
           </div>
-        </div>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#f4f4f4] to-transparent md:w-28" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#f4f4f4] to-transparent md:w-28" />
+        ))}
       </div>
 
-      <div className="shell mt-6 flex items-center justify-end gap-2 border-t border-black/12 pt-4">
+      <div className="shell mt-10 flex items-center justify-end gap-2 border-t border-black/15 pt-4">
         <button
           type="button"
-          onClick={() => setNudge((value) => value + step)}
+          onClick={() => nudge(-1)}
+          disabled={!overflowing}
           aria-label="Previous brand"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/70 transition-colors duration-300 hover:bg-black hover:text-white"
+          className={cn(
+            "flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/70 transition-colors duration-300 hover:bg-black hover:text-white",
+            !overflowing && "cursor-default opacity-30 hover:bg-transparent hover:text-black/70"
+          )}
         >
           <ArrowLeft className="h-3.5 w-3.5" strokeWidth={1.4} />
         </button>
         <button
           type="button"
-          onClick={() => setNudge((value) => value - step)}
+          onClick={() => nudge(1)}
+          disabled={!overflowing}
           aria-label="Next brand"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/70 transition-colors duration-300 hover:bg-black hover:text-white"
+          className={cn(
+            "flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/70 transition-colors duration-300 hover:bg-black hover:text-white",
+            !overflowing && "cursor-default opacity-30 hover:bg-transparent hover:text-black/70"
+          )}
         >
           <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.4} />
         </button>

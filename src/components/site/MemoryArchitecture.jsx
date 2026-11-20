@@ -1,107 +1,101 @@
 import { useEffect, useRef, useState } from "react";
 import Reveal from "@/components/site/Reveal";
+import MemoryStack from "@/components/site/MemoryStack";
 import { layers } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 export default function MemoryArchitecture() {
-  const stackRef = useRef(null);
+  const ref = useRef(null);
   const [active, setActive] = useState(0);
-  const [exploded, setExploded] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const el = stackRef.current;
+    const el = ref.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setExploded(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.35 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    let frame = null;
+    const update = () => {
+      frame = null;
+      const rect = el.getBoundingClientRect();
+      const next = Math.min(
+        Math.max((window.innerHeight - rect.top) / (window.innerHeight * 0.9), 0),
+        1
+      );
+      const rounded = Math.round(next * 40) / 40;
+      setProgress((prev) => (prev === rounded ? prev : rounded));
+    };
+    const onScroll = () => {
+      if (frame === null) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame !== null) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
-    <section id="about" className="border-y border-black/10 bg-[#eeeeee] py-20 md:py-28 lg:py-36">
-      <div className="shell grid gap-14 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-5">
+    <section
+      id="about"
+      ref={ref}
+      className="border-y border-black/10 bg-[#eeeeee] py-20 md:py-28 lg:py-32"
+    >
+      <div className="shell grid items-center gap-16 lg:grid-cols-12 lg:gap-12">
+        <div className="lg:col-span-6">
+          <MemoryStack
+            layers={layers}
+            active={active}
+            onSelect={setActive}
+            progress={progress}
+          />
+        </div>
+
+        <div className="lg:col-span-5 lg:col-start-8">
           <Reveal>
             <p className="eyebrow">04 — Architecture</p>
             <h2 className="display-xl mt-6 max-w-[13ch]">The Four Layer Memory Architecture</h2>
-            <p className="mt-8 max-w-sm text-[17px] leading-relaxed text-black/55">
+            <p className="mt-8 max-w-md text-[17px] leading-relaxed text-black/55">
               A unified intelligence layer that connects brand identity, workflows, and creation.
             </p>
           </Reveal>
-          <div className="mt-10 max-w-sm border-t border-black/15 pt-6">
-            <p className="eyebrow">{layers[active].title}</p>
-            <p key={active} className="fade-up mt-3 text-[15px] leading-relaxed text-black/60">
-              {layers[active].text}
-            </p>
-          </div>
-        </div>
 
-        <div className="lg:col-span-6 lg:col-start-7">
-          <div
-            ref={stackRef}
-            className={cn(
-              "relative mx-auto h-[286px] w-full max-w-[460px] sm:h-[336px] lg:h-[400px]",
-              exploded
-                ? "[--gap:58px] sm:[--gap:70px] lg:[--gap:86px]"
-                : "[--gap:24px] sm:[--gap:28px] lg:[--gap:32px]"
-            )}
-          >
+          <div className="mt-10 border-t border-black/15">
             {layers.map((layer, index) => {
               const isActive = active === index;
               return (
-                <div
-                  key={layer.title}
-                  className="group absolute inset-x-0 top-0"
-                  style={{
-                    transform: "translateY(calc(var(--i) * var(--gap)))",
-                    "--i": index,
-                    opacity: exploded ? 1 : 0,
-                    transition:
-                      "transform 900ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms ease-out",
-                    transitionDelay: `${index * 150}ms`,
-                  }}
-                  onMouseEnter={() => setActive(index)}
-                  onFocus={() => setActive(index)}
-                >
-                  <div className="relative mx-auto h-[70px] w-full max-w-[440px] transition-transform duration-300 ease-out group-hover:-translate-y-3 sm:h-[86px] lg:h-[104px]">
-                    <div className="absolute inset-0 bg-white/50 backdrop-blur-[3px] [clip-path:polygon(50%_0,100%_50%,50%_100%,0_50%)]" />
-                    <svg
-                      viewBox="0 0 440 104"
-                      preserveAspectRatio="none"
-                      className="absolute inset-0 h-full w-full"
-                      aria-hidden="true"
+                <div key={layer.title} className="border-b border-black/10">
+                  <button
+                    type="button"
+                    onClick={() => setActive(index)}
+                    onMouseEnter={() => setActive(index)}
+                    aria-expanded={isActive}
+                    className="flex w-full items-center gap-4 py-4 text-left"
+                  >
+                    <span className="eyebrow tabular-nums">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={cn(
+                        "text-[11px] uppercase tracking-[0.22em] transition-colors duration-300",
+                        isActive ? "text-black" : "text-black/40"
+                      )}
                     >
-                      <polygon
-                        points="220,1 439,52 220,103 1,52"
-                        fill="none"
-                        stroke={isActive ? "rgba(18,18,18,0.5)" : "rgba(18,18,18,0.2)"}
-                        strokeWidth="1"
-                        className="transition-all duration-500"
-                      />
-                    </svg>
-                    <button
-                      type="button"
-                      onClick={() => setActive(index)}
-                      className="absolute inset-0 flex items-center justify-center"
-                    >
-                      <span
-                        className={cn(
-                          "text-[9px] uppercase tracking-[0.24em] transition-colors duration-500 sm:text-[10px]",
-                          isActive ? "text-black" : "text-black/45 group-hover:text-black"
-                        )}
-                      >
-                        {layer.title}
-                      </span>
-                    </button>
+                      {layer.title}
+                    </span>
+                  </button>
+                  <div
+                    className={cn(
+                      "grid transition-all duration-500 ease-out",
+                      isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    )}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="max-w-sm pb-5 pl-9 text-[14px] leading-relaxed text-black/55">
+                        {layer.text}
+                      </p>
+                    </div>
                   </div>
                 </div>
               );
