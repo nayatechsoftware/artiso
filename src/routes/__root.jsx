@@ -12,11 +12,21 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Base44 App" },
-      { name: "description", content: "A full-stack Base44 app built with TanStack Start." },
+      { title: "ARTISO — The Agentic Operating System for Fashion Creatives" },
+      {
+        name: "description",
+        content:
+          "ARTISO connects the way fashion teams think, create and bring ideas to life, from brand DNA and design to tech packs, campaigns and merchandising.",
+      },
     ],
     // No icon link: the platform adds the app's logo when serving.
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Jost:wght@300;400;500;600&display=swap",
+      },
       { rel: "stylesheet", href: appCss },
     ],
   }),

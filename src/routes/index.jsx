@@ -1,27 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
+import SiteHeader from "@/components/site/SiteHeader";
+import Hero from "@/components/site/Hero";
+import TeamsSection from "@/components/site/TeamsSection";
+import JourneyRail from "@/components/site/JourneyRail";
+import SolutionTabs from "@/components/site/SolutionTabs";
+import WorkflowGrid from "@/components/site/WorkflowGrid";
+import MemoryArchitecture from "@/components/site/MemoryArchitecture";
+import ImpactStats from "@/components/site/ImpactStats";
+import TrustedMarquee from "@/components/site/TrustedMarquee";
+import Testimonials from "@/components/site/Testimonials";
+import DemoForm from "@/components/site/DemoForm";
+import SiteFooter from "@/components/site/SiteFooter";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [{ title: "Base44 App" }] }),
-  component: HomePage,
+  head: () => ({
+    meta: [
+      { title: "ARTISO — Shaping the Future of Fashion" },
+      {
+        name: "description",
+        content:
+          "ARTISO is the Agentic Operating System for fashion creatives: brand DNA, archive, design development, tech packs, campaigns and merchandising in one connected intelligence layer.",
+      },
+    ],
+  }),
+  component: Home,
 });
 
-function HomePage() {
+function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6">
-      <div className="flex max-w-sm flex-col items-center text-center">
-        <div aria-hidden="true" className="mb-8 w-40 space-y-2.5 rounded-xl border bg-card p-4 shadow-sm">
-          <div className="h-2 w-12 rounded-full bg-foreground/80" />
-          <div className="h-2 w-full rounded-full bg-muted" />
-          <div className="h-2 w-3/4 rounded-full bg-muted" />
-          <div className="grid grid-cols-3 gap-2 pt-1.5">
-            <div className="h-8 rounded-md bg-muted" />
-            <div className="h-8 rounded-md bg-muted" />
-            <div className="h-8 rounded-md bg-muted" />
-          </div>
-        </div>
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground">Your app will appear here</h1>
-        <p className="mt-2 text-balance text-sm text-muted-foreground">Describe what you want to build, and this page becomes it.</p>
-      </div>
-    </main>
+    <div className="min-h-screen bg-[#f4f4f4] text-[#121212]">
+      <SiteHeader />
+      <main>
+        <Hero />
+        <TeamsSection />
+        <JourneyRail />
+        <SolutionTabs />
+        <WorkflowGrid />
+        <MemoryArchitecture />
+        <ImpactStats />
+        <TrustedMarquee />
+        <Testimonials />
+        <DemoForm />
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

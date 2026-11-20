@@ -1,0 +1,52 @@
+{
+  "type": "object",
+  "name": "DemoRequest",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the person requesting a demo"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address to reply to"
+    },
+    "company": {
+      "type": "string",
+      "description": "Brand or organisation the person belongs to"
+    },
+    "message": {
+      "type": "string",
+      "description": "What they would like to see in the demo"
+    }
+  },
+  "required": [
+    "name",
+    "email"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
