@@ -5,7 +5,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 import PageIntro from "@/components/site/PageIntro";
 import CookieBanner from "@/components/site/CookieBanner";
 import BackToTop from "@/components/site/BackToTop";
-import { initSmoothScroll, scrollToId } from "@/lib/smoothScroll";
+import { scrollToId } from "@/lib/smoothScroll";
 
 export const Route = createFileRoute("/_site")({
   component: SiteLayout,
@@ -13,8 +13,6 @@ export const Route = createFileRoute("/_site")({
 
 function SiteLayout() {
   const location = useLocation();
-
-  useEffect(() => initSmoothScroll(), []);
 
   useEffect(() => {
     if (!location.hash) return;

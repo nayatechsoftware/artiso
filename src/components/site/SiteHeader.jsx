@@ -20,8 +20,8 @@ export default function SiteHeader() {
 
   useEffect(() => {
     const onScroll = () => {
-      const threshold = isHome ? Math.max(window.innerHeight * 0.5, 120) : 20;
-      setCompact(window.scrollY > threshold);
+      const hero = isHome ? document.getElementById("top") : null;
+      setCompact(hero ? hero.getBoundingClientRect().bottom <= 60 : window.scrollY > 20);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -49,7 +49,7 @@ export default function SiteHeader() {
         {/* Expanded lockup: large serif wordmark, stacked nav and frosted pill */}
         <div
           className={cn(
-            "shell origin-top-left transition-all duration-500 ease-out lg:pl-[9vw]",
+            "shell origin-top-left transition-all duration-300 ease-out lg:pl-[9vw]",
             expanded ? "pointer-events-auto opacity-100" : "pointer-events-none -translate-y-4 opacity-0"
           )}
           aria-hidden={!expanded}
@@ -65,7 +65,7 @@ export default function SiteHeader() {
                   key={link.label}
                   to={link.to}
                   hash={link.hash}
-                  className="link-underline w-fit text-[16px] leading-none text-[#2b2b2b]/85 transition-colors duration-300 hover:text-[#2b2b2b]"
+                  className="link-underline w-fit text-[16px] leading-none text-[#2b2b2b]/85 transition-colors duration-200 ease-out hover:text-[#2b2b2b]"
                 >
                   {link.label}
                 </Link>
@@ -90,18 +90,18 @@ export default function SiteHeader() {
         {/* Compact bar it shrinks into */}
         <div
           className={cn(
-            "absolute inset-x-0 top-0 border-b transition-all duration-500 ease-out",
+            "absolute inset-x-0 top-0 border-b transition-all duration-300 ease-out",
             expanded
               ? "pointer-events-none -translate-y-2 border-transparent bg-transparent opacity-0"
-              : "pointer-events-auto translate-y-0 border-black/10 bg-[#f4f4f4]/90 opacity-100 backdrop-blur-md"
+              : "pointer-events-auto translate-y-0 border-[#e0e0e0] bg-[#f4f4f4]/90 opacity-100 backdrop-blur-[12px]"
           )}
         >
-          <div className="shell grid h-[64px] grid-cols-[1fr_auto_1fr] items-center gap-4 md:h-[72px]">
+          <div className="shell grid h-[60px] grid-cols-[1fr_auto_1fr] items-center gap-4">
             <Link
               to="/"
               hash="top"
               aria-label="ARTISO home"
-              className="wordmark justify-self-start text-[1.35rem] md:text-[1.55rem]"
+              className="wordmark justify-self-start text-[26px]"
             >
               ARTISO
             </Link>
@@ -112,7 +112,7 @@ export default function SiteHeader() {
                   key={link.label}
                   to={link.to}
                   hash={link.hash}
-                  className="link-underline text-[11px] uppercase tracking-[0.2em] text-black/65 transition-colors duration-300 hover:text-black"
+                  className="link-underline text-[15px] leading-none text-[#222]/70 transition-colors duration-200 ease-out hover:text-[#222]"
                 >
                   {link.label}
                 </Link>

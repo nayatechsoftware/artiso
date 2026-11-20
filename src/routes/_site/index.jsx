@@ -5,7 +5,7 @@ import JourneyDial from "@/components/site/JourneyDial";
 import SolutionTabs from "@/components/site/SolutionTabs";
 import MemoryArchitecture from "@/components/site/MemoryArchitecture";
 import ImpactStats from "@/components/site/ImpactStats";
-import TrustedMarquee from "@/components/site/TrustedMarquee";
+import TrustedBy from "@/components/site/TrustedBy";
 import Testimonials from "@/components/site/Testimonials";
 import DemoForm from "@/components/site/DemoForm";
 
@@ -32,7 +32,7 @@ function Home() {
       <SolutionTabs />
       <MemoryArchitecture />
       <ImpactStats />
-      <TrustedMarquee />
+      <TrustedBy />
       <Testimonials />
       <DemoForm />
     </>

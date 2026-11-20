@@ -1,122 +1,78 @@
-import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
-import Reveal from "@/components/site/Reveal";
+import { useState } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { testimonials } from "@/data/site";
 import { cn } from "@/lib/utils";
 
-const AUTOPLAY = 7000;
-
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const dragStart = useRef(null);
   const total = testimonials.length;
   const single = total < 2;
 
   const go = (step) => setIndex((current) => (current + step + total) % total);
 
-  useEffect(() => {
-    if (paused || single) return;
-    const id = setInterval(() => setIndex((current) => (current + 1) % total), AUTOPLAY);
-    return () => clearInterval(id);
-  }, [paused, single, total]);
-
-  const onPointerDown = (event) => {
-    dragStart.current = event.clientX;
-  };
-
-  const onPointerUp = (event) => {
-    if (single || dragStart.current === null) return;
-    const delta = event.clientX - dragStart.current;
-    dragStart.current = null;
-    if (Math.abs(delta) > 40) go(delta > 0 ? -1 : 1);
-  };
-
   return (
-    <section className="shell py-20 md:py-28 lg:py-32">
-      <Reveal className="flex flex-wrap items-end justify-between gap-6">
-        <div>
-          <p className="eyebrow">06 — Voices</p>
-          <h2 className="display-xl mt-6 max-w-[14ch]">Experiences That Matter</h2>
-        </div>
-        {!single && (
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => go(-1)}
-              aria-label="Previous testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-black/15 transition-colors hover:bg-black hover:text-white"
-            >
-              <ArrowLeft className="h-4 w-4" strokeWidth={1.4} />
-            </button>
-            <button
-              type="button"
-              onClick={() => go(1)}
-              aria-label="Next testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-black/15 transition-colors hover:bg-black hover:text-white"
-            >
-              <ArrowRight className="h-4 w-4" strokeWidth={1.4} />
-            </button>
-          </div>
-        )}
-      </Reveal>
+    <section className="bg-[#f4f4f4] py-20 md:py-28">
+      <div className="mx-auto w-full max-w-[800px] px-5 md:px-0">
+        <h2 className="text-[30px] font-light leading-tight text-[#222] md:text-[36px]">
+          Experiences That Matter
+        </h2>
 
-      <div
-        className={cn(
-          "mt-12 border-t border-black/12",
-          !single && "cursor-grab active:cursor-grabbing"
-        )}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onPointerDown={onPointerDown}
-        onPointerUp={onPointerUp}
-        onPointerCancel={() => (dragStart.current = null)}
-        style={{ touchAction: "pan-y" }}
-      >
-        <div className="grid">
-          {testimonials.map((entry, i) => {
-            const isActive = i === index;
-            return (
-              <figure
-                key={entry.name}
-                aria-hidden={!isActive}
-                className={cn(
-                  "col-start-1 row-start-1 pt-10 transition-all [transition-duration:600ms] ease-out md:pt-14",
-                  isActive
-                    ? "pointer-events-auto translate-y-0 opacity-100"
-                    : "pointer-events-none translate-y-2 opacity-0"
-                )}
+        <div className="mt-10 md:pl-[197px]">
+          <span aria-hidden="true" className="block font-serif text-[96px] leading-[0.62] text-[#6b6358]">
+            “
+          </span>
+
+          <div className="relative mt-6 min-h-[200px]">
+            {testimonials.map((entry, entryIndex) => {
+              const isActive = entryIndex === index;
+              return (
+                <figure
+                  key={entry.name}
+                  aria-hidden={!isActive}
+                  className={cn(
+                    "transition-opacity duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
+                    isActive
+                      ? "relative opacity-100"
+                      : "pointer-events-none absolute inset-0 opacity-0"
+                  )}
+                >
+                  <blockquote
+                    className="max-w-[420px] font-serif text-[26px] font-normal leading-[1.35] text-[#5c5850]"
+                    style={{ textIndent: "-10px" }}
+                  >
+                    “{entry.quote}”
+                  </blockquote>
+                  <figcaption className="mt-7">
+                    <p className="text-[15px] text-[#222]">{entry.name}</p>
+                    <p className="mt-1 text-[14px] text-[#777]">{entry.role}</p>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+
+          {!single && (
+            <div className="mt-14 flex gap-3 md:ml-[463px]">
+              <button
+                type="button"
+                onClick={() => go(-1)}
+                aria-label="Previous testimonial"
+                className="text-[#222] transition-opacity duration-200 ease-out hover:opacity-45"
               >
-                <Quote className="h-8 w-8 text-black/25" strokeWidth={1.2} />
-                <blockquote className="mt-6 max-w-4xl font-display text-[clamp(1.3rem,2.4vw,2rem)] leading-[1.4] text-black">
-                  “{entry.quote}”
-                </blockquote>
-                <figcaption className="mt-10 flex flex-col gap-1 border-t border-black/12 pt-5 sm:flex-row sm:items-baseline sm:justify-between">
-                  <span className="text-[15px] text-black">{entry.name}</span>
-                  <span className="text-sm text-black/50">{entry.role}</span>
-                </figcaption>
-              </figure>
-            );
-          })}
+                <ArrowLeft className="h-[22px] w-[22px]" strokeWidth={1.25} />
+              </button>
+              <button
+                type="button"
+                onClick={() => go(1)}
+                aria-label="Next testimonial"
+                className="text-[#222] transition-opacity duration-200 ease-out hover:opacity-45"
+              >
+                <ArrowRight className="h-[22px] w-[22px]" strokeWidth={1.25} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
-
-      {!single && (
-        <div className="mt-8 flex items-center gap-2">
-          {testimonials.map((entry, dotIndex) => (
-            <button
-              key={entry.name}
-              type="button"
-              onClick={() => setIndex(dotIndex)}
-              aria-label={`Show testimonial from ${entry.name}`}
-              className={cn(
-                "h-[3px] transition-all duration-500",
-                dotIndex === index ? "w-10 bg-black" : "w-5 bg-black/20 hover:bg-black/40"
-              )}
-            />
-          ))}
-        </div>
-      )}
     </section>
   );
 }

@@ -300,19 +300,22 @@ export const stats = [
   {
     value: 70,
     suffix: "%",
-    label: "reduction in product development time",
+    label: "Reduction in product development time",
+    title: "Streamlines Product Development",
     text: "Fewer handoffs between design, technical and sourcing, with one record moving through the whole process.",
   },
   {
     value: 5,
     suffix: "x",
-    label: "faster concept-to-campaign cycles",
+    label: "Faster concept-to-campaign cycles",
+    title: "Speeds Up Concept to Campaign",
     text: "A look sketched in the morning can be photographed, styled and ready to publish in the same week.",
   },
   {
     value: 90,
     suffix: "%",
-    label: "savings on campaign production costs",
+    label: "Savings achieved by using AI to generate high-quality commercial visuals.",
+    title: "Cuts Campaign Costs",
     text: "Campaign imagery generated from the actual product, in your brand's own visual language.",
   },
 ];

@@ -2,17 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import Reveal from "@/components/site/Reveal";
 import { stats } from "@/data/site";
 
+const CARD_BG = ["#9aafbb", "#e2e2e2", "#d6d4d1"];
+
 function useCountUp(target, start) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start) return undefined;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setValue(target);
-      return;
+      return undefined;
     }
     let frame;
-    const duration = 1800;
+    const duration = 1600;
     const began = performance.now();
     const tick = (now) => {
       const progress = Math.min((now - began) / duration, 1);
@@ -27,18 +29,25 @@ function useCountUp(target, start) {
   return value;
 }
 
-function Stat({ stat, start, index }) {
+function StatCard({ stat, start, index }) {
   const value = useCountUp(stat.value, start);
+
   return (
-    <Reveal delay={index * 150} className="border-t border-black/12 pt-6">
-      <div className="flex items-baseline gap-1">
-        <span className="text-[clamp(3.4rem,7vw,6rem)] font-light leading-none tracking-[-0.04em] text-black tabular-nums">
+    <Reveal delay={index * 120} className="h-full">
+      <article
+        className="flex h-full min-h-[320px] flex-col p-[26px]"
+        style={{ backgroundColor: CARD_BG[index % CARD_BG.length] }}
+      >
+        <p className="text-[64px] font-light leading-none tabular-nums text-[#222]">
           {value}
-        </span>
-        <span className="text-[clamp(1.4rem,2.4vw,2rem)] font-light text-black/70">{stat.suffix}</span>
-      </div>
-      <p className="mt-5 max-w-[22ch] text-[15px] leading-snug text-black">{stat.label}</p>
-      <p className="mt-4 max-w-xs text-sm leading-relaxed text-black/50">{stat.text}</p>
+          {stat.suffix}
+        </p>
+        <p className="mt-3 text-[12px] leading-snug text-[#333]">{stat.label}</p>
+        <div className="mt-auto pt-10">
+          <h3 className="text-[22px] font-normal leading-tight text-[#222]">{stat.title}</h3>
+          <p className="mt-3 text-[13px] leading-relaxed text-[#333]">{stat.text}</p>
+        </div>
+      </article>
     </Reveal>
   );
 }
@@ -49,7 +58,7 @@ export default function ImpactStats() {
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el) return undefined;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -59,23 +68,24 @@ export default function ImpactStats() {
           }
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.15 }
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="news" ref={ref} className="shell py-20 md:py-28 lg:py-36">
-      <Reveal>
-        <p className="eyebrow">05 — Impact</p>
-        <h2 className="display-xl mt-6 max-w-[14ch]">The Impact Behind The Innovation</h2>
-      </Reveal>
+    <section id="news" ref={ref} className="py-20 md:py-28 lg:py-32">
+      <div className="mx-auto w-full max-w-[800px] px-5 md:px-0">
+        <h2 className="text-center text-[30px] font-light leading-tight text-[#222] md:text-[36px]">
+          The Impact Behind The Innovation
+        </h2>
 
-      <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
-        {stats.map((stat, index) => (
-          <Stat key={stat.label} stat={stat} start={start} index={index} />
-        ))}
+        <div className="mt-12 grid gap-[10px] md:grid-cols-3">
+          {stats.map((stat, index) => (
+            <StatCard key={stat.title} stat={stat} start={start} index={index} />
+          ))}
+        </div>
       </div>
     </section>
   );
