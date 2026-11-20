@@ -133,7 +133,7 @@ function Careers() {
           </div>
         </div>
 
-        <Reveal delay={80}>
+        <Reveal i={1}>
           <div className="mt-14 aspect-[4/5] w-full overflow-hidden bg-black/5 sm:aspect-[3/2]">
             <Image
               src={careersImages.team}

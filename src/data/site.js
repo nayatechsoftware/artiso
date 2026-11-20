@@ -54,6 +54,8 @@ export const collagePhotos = [
   sanity + "ff592cf3b5c6b769c87ae53f45f94fa36724ddc3-896x1200.webp",
 ];
 
+export const heroCollage = sanity + "fb281f262d693f604c121d8a0962208c69803752-1600x1426.webp";
+
 export const heroFeature = {
   back: sanity + "8925d29d38908896303e571ba1a7a1f4b385ebdb-1073x1600.webp",
   front: sanity + "afc23ffeed80859211f4cb9af158460681c308fa-1195x1600.webp",

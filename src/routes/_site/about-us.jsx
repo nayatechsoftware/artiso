@@ -45,7 +45,7 @@ function AboutUs() {
 
         <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-8">
           {founders.map((founder, index) => (
-            <Reveal key={founder.name} delay={index * 70}>
+            <Reveal key={founder.name} i={index}>
               <FounderCard founder={founder} />
             </Reveal>
           ))}
@@ -59,7 +59,7 @@ function AboutUs() {
               {aboutClosing}
             </p>
           </Reveal>
-          <Reveal delay={120}>
+          <Reveal i={1}>
             <div className="mt-14 aspect-[4/5] w-full overflow-hidden bg-black/5 sm:aspect-[3/2]">
               <Image
                 src={aboutImages.team}

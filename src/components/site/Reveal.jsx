@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-export default function Reveal({ children, className, delay = 0, as: Tag = "div" }) {
+export default function Reveal({ children, className, i = 0, as: Tag = "div" }) {
   const ref = useRef(null);
   const [shown, setShown] = useState(false);
 
@@ -11,7 +11,6 @@ export default function Reveal({ children, className, delay = 0, as: Tag = "div"
 
     const reveal = () => setShown(true);
 
-    // Never leave content hidden if the observer is unavailable or throws.
     if (typeof IntersectionObserver === "undefined") {
       reveal();
       return undefined;
@@ -45,8 +44,8 @@ export default function Reveal({ children, className, delay = 0, as: Tag = "div"
   return (
     <Tag
       ref={ref}
-      className={cn("reveal", shown && "is-visible", className)}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      className={cn("reveal", shown && "is-in", className)}
+      style={{ "--i": i }}
     >
       {children}
     </Tag>

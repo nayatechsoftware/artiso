@@ -12,7 +12,7 @@ export default function MemoryArchitecture() {
               The Four Layer Memory Architecture
             </h2>
           </Reveal>
-          <Reveal delay={100}>
+          <Reveal i={1}>
             <p className="text-[15px] leading-relaxed text-[#666]">
               A unified intelligence layer that connects brand identity, workflows, and creation.
             </p>

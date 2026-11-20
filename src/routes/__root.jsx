@@ -55,7 +55,7 @@ function RootDocument({ children }) {
       {/* data-react-root: the builder's preview bridge looks for #root and falls back to this. */}
       <body data-react-root="true">
         <noscript>
-          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+          <style>{`.reveal{opacity:1 !important;translate:none !important}`}</style>
         </noscript>
         {children}
         <Base44Scripts />

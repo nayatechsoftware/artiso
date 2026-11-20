@@ -219,7 +219,7 @@ export default function BookDemoForm({ image }) {
         </div>
 
         <div className="lg:col-span-5">
-          <Reveal delay={120}>
+          <Reveal i={1}>
             <div className="aspect-[4/5] w-full overflow-hidden bg-black/5">
               <Image
                 src={image}

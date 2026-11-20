@@ -54,7 +54,7 @@ export default function DemoForm() {
         </div>
 
         <div className="lg:col-span-6 lg:col-start-7">
-          <Reveal delay={120}>
+          <Reveal i={1}>
             {status === "done" ? (
               <div className="flex min-h-[380px] flex-col justify-center border border-black/12 bg-white p-8 md:p-12">
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#c9d6df]">

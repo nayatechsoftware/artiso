@@ -33,7 +33,7 @@ function StatCard({ stat, start, index }) {
   const value = useCountUp(stat.value, start);
 
   return (
-    <Reveal delay={index * 120} className="h-full">
+    <Reveal i={index} className="h-full">
       <article
         className="flex h-full min-h-[320px] flex-col p-[26px]"
         style={{ backgroundColor: CARD_BG[index % CARD_BG.length] }}
