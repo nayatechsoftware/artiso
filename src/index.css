@@ -388,6 +388,17 @@
   }
 }
 
+@keyframes cardPop {
+  from {
+    opacity: 0.4;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes tileIn {
   from {
     opacity: 0;

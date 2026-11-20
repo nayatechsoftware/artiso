@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-export default function CrossfadeImage({ src, alt, className }) {
+export default function CrossfadeImage({ src, alt, className, duration = 600 }) {
   const [slots, setSlots] = useState({ a: src, b: null, active: "a" });
 
   useEffect(() => {
@@ -20,9 +20,10 @@ export default function CrossfadeImage({ src, alt, className }) {
         <div
           key={slot}
           className={cn(
-            "absolute inset-0 transition-opacity [transition-duration:600ms] ease-out",
+            "absolute inset-0 transition-opacity ease-out",
             slots.active === slot ? "opacity-100" : "opacity-0"
           )}
+          style={{ transitionDuration: `${duration}ms` }}
           aria-hidden={slots.active === slot ? undefined : "true"}
         >
           {slots[slot] && (

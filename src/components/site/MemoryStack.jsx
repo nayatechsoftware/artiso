@@ -1,72 +1,141 @@
-import { cn } from "@/lib/utils";
+import { useEffect, useRef, useState } from "react";
 
-const COOL =
-  "linear-gradient(135deg, rgba(209,223,236,0.92) 0%, rgba(170,193,215,0.74) 52%, rgba(131,160,190,0.62) 100%)";
-const WARM =
-  "linear-gradient(135deg, rgba(236,225,210,0.94) 0%, rgba(216,199,176,0.8) 52%, rgba(194,172,146,0.66) 100%)";
+const W = 460;
+const H = 125;
+const OFFSET = 26;
 
-export default function MemoryStack({ layers, active, onSelect, progress }) {
-  const gap = 26 + progress * 86;
-  const last = layers.length - 1;
+const FILLS = [
+  { id: "mem-0", from: "#dce4ec", fromOpacity: 0.7, to: "#dce4ec", toOpacity: 0.55 },
+  { id: "mem-1", from: "#bed2eb", fromOpacity: 0.7, to: "#bed2eb", toOpacity: 0.58 },
+  { id: "mem-2", from: "#9bbbe6", fromOpacity: 0.8, to: "#c6d3e8", toOpacity: 0.85 },
+  { id: "mem-3", from: "#d9cdbd", fromOpacity: 1, to: "#e4e2df", toOpacity: 1 },
+];
+
+function unit(from, to) {
+  const dx = to[0] - from[0];
+  const dy = to[1] - from[1];
+  const len = Math.hypot(dx, dy) || 1;
+  return [dx / len, dy / len];
+}
+
+function roundedDiamond(w, h, r) {
+  const points = [
+    [w / 2, 0],
+    [w, h / 2],
+    [w / 2, h],
+    [0, h / 2],
+  ];
+  let path = "";
+
+  points.forEach((point, index) => {
+    const prev = points[(index + 3) % 4];
+    const next = points[(index + 1) % 4];
+    const back = unit(point, prev);
+    const forward = unit(point, next);
+    const start = [point[0] + back[0] * r, point[1] + back[1] * r];
+    const end = [point[0] + forward[0] * r, point[1] + forward[1] * r];
+
+    path += `${index === 0 ? "M" : "L"} ${start[0].toFixed(2)} ${start[1].toFixed(2)} `;
+    path += `Q ${point[0]} ${point[1]} ${end[0].toFixed(2)} ${end[1].toFixed(2)} `;
+  });
+
+  return `${path}Z`;
+}
+
+const DIAMOND = roundedDiamond(W, H, 16);
+const CLIP = "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)";
+
+export default function MemoryStack({ layers }) {
+  const ref = useRef(null);
+  const [spread, setSpread] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setSpread(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSpread(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
-      className="relative mx-auto w-full max-w-[520px]"
-      style={{
-        "--d": "clamp(150px, 38vw, 230px)",
-        "--g": `${gap}px`,
-        height: "calc(var(--d) * 0.792 + var(--g) * 3)",
-      }}
+      ref={ref}
+      className="relative w-full"
+      style={{ height: H + OFFSET * (layers.length - 1) }}
     >
+      <svg width="0" height="0" className="absolute" aria-hidden="true">
+        <defs>
+          {FILLS.map((fill) => (
+            <linearGradient key={fill.id} id={fill.id} x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor={fill.from} stopOpacity={fill.fromOpacity} />
+              <stop offset="100%" stopColor={fill.to} stopOpacity={fill.toOpacity} />
+            </linearGradient>
+          ))}
+        </defs>
+      </svg>
+
       {layers.map((layer, index) => {
-        const isActive = active === index;
+        const lineLength = 130 + index * 12;
+        const mid = H / 2;
+
         return (
           <div
             key={layer.title}
-            className="absolute inset-x-0"
+            className="absolute inset-x-0 top-0"
             style={{
-              top: index === 0 ? 0 : `calc(${index} * var(--g))`,
-              height: "calc(var(--d) * 0.792)",
-              zIndex: last - index,
+              height: H,
+              zIndex: layers.length - index,
+              transform: `translateY(${spread ? index * OFFSET : 0}px)`,
+              transition: "transform 900ms cubic-bezier(0.22, 1, 0.36, 1)",
             }}
           >
             <div
-              aria-hidden="true"
-              className="absolute left-1/2 top-1/2 transition-opacity duration-500"
+              className="absolute left-0 top-0"
               style={{
-                width: "var(--d)",
-                height: "var(--d)",
-                transform: "translate(-50%, -50%) scaleY(0.56) rotate(45deg)",
-                opacity: isActive ? 1 : 0.84,
+                width: W,
+                height: H,
+                clipPath: CLIP,
+                WebkitClipPath: CLIP,
+                backdropFilter: "blur(6px)",
+                WebkitBackdropFilter: "blur(6px)",
               }}
             >
-              <div
-                className="absolute inset-0 rounded-[26%] border border-white/70 backdrop-blur-[5px]"
-                style={{
-                  background: index === last ? WARM : COOL,
-                  boxShadow:
-                    "inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -22px 34px -24px rgba(255,255,255,0.6), 0 46px 72px -54px rgba(28,46,72,0.7)",
-                }}
-              />
-              <div className="absolute inset-0 rounded-[26%] bg-gradient-to-br from-white/45 via-transparent to-black/[0.04]" />
+              <svg width={W} height={H} className="block overflow-visible">
+                <path
+                  d={DIAMOND}
+                  fill={`url(#${FILLS[index].id})`}
+                  stroke="#9a9a9a"
+                  strokeWidth="1"
+                />
+              </svg>
             </div>
 
-            <button
-              type="button"
-              onClick={() => onSelect(index)}
-              onMouseEnter={() => onSelect(index)}
-              aria-pressed={isActive}
-              className="absolute inset-0 flex items-center justify-center"
+            <span
+              className="absolute h-px bg-[#444]"
+              style={{ left: W, top: mid, width: lineLength }}
+            />
+            <span
+              className="absolute h-[5px] w-[5px] rounded-full bg-[#444]"
+              style={{ left: W + lineLength - 2.5, top: mid - 2.5 }}
+            />
+            <span
+              className="absolute whitespace-nowrap text-[11px] uppercase tracking-[0.06em] text-[#444]"
+              style={{ left: W + lineLength + 10, top: mid - 7 }}
             >
-              <span
-                className={cn(
-                  "whitespace-nowrap text-[9px] uppercase tracking-[0.26em] transition-colors duration-500 sm:text-[10px]",
-                  isActive ? "text-black" : "text-black/45"
-                )}
-              >
-                {layer.title}
-              </span>
-            </button>
+              {layer.title}
+            </span>
           </div>
         );
       })}

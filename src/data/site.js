@@ -279,7 +279,7 @@ export const workflow = [
 
 export const layers = [
   {
-    title: "Project / Capsule",
+    title: "Project/Capsule",
     text: "Every capsule gets its own workspace, holding the brief, the references and the decisions that shaped it.",
   },
   {
