@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Image } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
 
 export default function CrossfadeImage({ src, alt, className }) {
@@ -27,12 +26,13 @@ export default function CrossfadeImage({ src, alt, className }) {
           aria-hidden={slots.active === slot ? undefined : "true"}
         >
           {slots[slot] && (
-            <Image
+            <img
               key={slots[slot]}
               src={slots[slot]}
               alt={alt}
-              fittingType="fill"
-              className="h-full w-full animate-[imgIn_600ms_ease-out_both]"
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover animate-[imgIn_600ms_ease-out_both]"
             />
           )}
         </div>

@@ -14,11 +14,11 @@ export default function Hero() {
         Visual content AI-generated with ARTISO
       </span>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-8 z-20 flex justify-center px-5 md:bottom-12">
-        <p className="fade-up text-center text-[13px] font-light tracking-[-0.01em] text-[#121212] md:ml-[26%] md:text-[15px]">
-          Shaping the Future of Fashion
-        </p>
-      </div>
+      <p className="fade-up pointer-events-none absolute bottom-8 right-5 z-20 max-w-[80%] text-right font-normal leading-[1.15] tracking-[-0.02em] text-[#121212] [font-size:clamp(28px,2.4vw,46px)] md:bottom-10 md:right-[20%]">
+        Shaping the Future
+        <br />
+        of Fashion
+      </p>
     </section>
   );
 }

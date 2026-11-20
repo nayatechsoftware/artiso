@@ -145,19 +145,26 @@ export default function JourneyDial() {
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-8">
           {workflow.map((item, index) => (
             <Reveal key={item.title} delay={index * 100} className="h-full">
-              <article className="group relative flex h-full min-h-[176px] flex-col justify-between overflow-hidden border border-white/70 bg-white/45 p-4 backdrop-blur-md transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white/70 hover:shadow-[0_28px_50px_-30px_rgba(18,18,18,0.45)]">
-                <span
-                  className="dot-grid pointer-events-none absolute inset-0 opacity-[0.07]"
-                  aria-hidden="true"
-                />
-                <span className="eyebrow relative tabular-nums">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div className="relative mt-8">
-                  <h3 className="text-[13px] font-normal leading-snug tracking-tight text-black">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-[11px] leading-relaxed text-black/50">{item.text}</p>
+              <article className="group relative flex h-full flex-col overflow-hidden border border-white/70 bg-white/45 backdrop-blur-md transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white/70 hover:shadow-[0_28px_50px_-30px_rgba(18,18,18,0.45)]">
+                <div className="aspect-[4/5] w-full overflow-hidden bg-black/5">
+                  <img
+                    src={item.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform [transition-duration:700ms] ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col justify-between p-4">
+                  <span className="eyebrow tabular-nums">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="mt-6">
+                    <h3 className="text-[13px] font-normal leading-snug tracking-tight text-black">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-[11px] leading-relaxed text-black/50">{item.text}</p>
+                  </div>
                 </div>
               </article>
             </Reveal>

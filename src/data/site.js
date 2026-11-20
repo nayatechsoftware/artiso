@@ -1,30 +1,14 @@
-const img = "https://media.base44.com/images/public/6b0044b979df404f044d4352/";
+const sanity = "https://cdn.sanity.io/images/mvgv7zsh/production/";
 
-export const images = {
-  hero: img + "977efe6b7_generated_a98e79b4.png",
-  brandDna: img + "949a7f186_generated_2eccff68.png",
-  archive: img + "97ea7c93d_generated_ec8ee144.png",
-  smartGallery: img + "49a5ba025_generated_d5804ce3.png",
-  moodboard: img + "45b587b8d_generated_2fa181fd.png",
-  designDevelopment: img + "fb84b049a_generated_f446e5e6.png",
-  prints: img + "86a98a4d2_generated_19f4272b.png",
-  technicalDrawing: img + "635e898dc_generated_25143bac.png",
-  techPack: img + "68a0fb332_generated_684a2d1c.png",
-  plm: img + "b950274e7_generated_4a8dfcba.png",
-  aiAvatar: img + "0276409c3_generated_b0dda914.png",
-  campaigns: img + "1891ec18f_generated_62213050.png",
-  styling: img + "ad8d8fe8c_generated_c0ea756f.png",
-  trends: img + "c5fc3ae38_generated_361597b4.png",
-  sketchToRender: img + "10c77ddbe_generated_b450f309.png",
-  collectionPlanning: img + "59eed7995_generated_f41352e6.png",
-  bestsellers: img + "44226fb89_generated_6414b6eb.png",
-  vibeDesign: img + "c8538aaa9_generated_3b844b17.png",
-  aiPattern: img + "298354641_generated_46b95a8c.png",
-  smartDecision: img + "8c71498dc_generated_c943207a.png",
-  storeLayout: img + "1eaac2bb4_generated_b8b3b618.png",
-  windows: img + "dbb244a19_generated_e8c2a06d.png",
-  b2bCatalog: img + "976314f8f_generated_b1a5ccbf.png",
-};
+export const heroPhotos = [
+  sanity + "0182d5c6b1137ed0196fd40c2807434851c94312-896x1200.webp",
+  sanity + "03640ac31f27b485a3d96f59bad59cbb0baf9548-900x1200.webp",
+  sanity + "04d4df18a5a5e1ba3aafb7872864a0c1fd891a61-896x1200.webp",
+  sanity + "068dcc3b3710642492a3bdaf7b731ac0db708938-896x1200.webp",
+  sanity + "0c142d06dd2dc8eb6f7a20ed24cfb1345e4ed4dd-896x1200.webp",
+];
+
+export const introFilm = sanity + "15ab0bfe2680cefd0c16ced905cb7511e9b051c1-2560x1440.jpg";
 
 export const teams = [
   {
@@ -49,21 +33,6 @@ export const teams = [
   },
 ];
 
-export const journey = [
-  { title: "Brand DNA", image: images.brandDna },
-  { title: "Archive", image: images.archive },
-  { title: "Smart Gallery", image: images.smartGallery },
-  { title: "Moodboard", image: images.moodboard },
-  { title: "Design Development", image: images.designDevelopment },
-  { title: "Positional & All-Over Prints", image: images.prints },
-  { title: "Technical Drawing", image: images.technicalDrawing },
-  { title: "Tech Pack", image: images.techPack },
-  { title: "PLM & Supplier Integration", image: images.plm },
-  { title: "AI Avatar", image: images.aiAvatar },
-  { title: "Campaigns & Content", image: images.campaigns },
-  { title: "Merchandising & Styling", image: images.styling },
-];
-
 export const solutionTabs = [
   {
     id: "brand-core",
@@ -71,17 +40,17 @@ export const solutionTabs = [
     items: [
       {
         title: "Archive",
-        image: images.archive,
+        image: sanity + "08ab5ed5c8255ed86ed68000d5beab14cb66983e-716x958.jpg",
         text: "Digitize past collections into a living source of inspiration for new designs.",
       },
       {
         title: "Brand DNA",
-        image: images.brandDna,
+        image: sanity + "f02ffa73de92eab0251dc7da705c4beb9a43acf4-960x1280.jpg",
         text: "Your house codes, palette and signatures, learned once and applied to everything ARTISO makes.",
       },
       {
         title: "Trends",
-        image: images.trends,
+        image: sanity + "98877cc312a2f4401b6eb4889295780f4c493caa-716x958.webp",
         text: "Seasonal direction, runway research and market signals, mapped against what your brand already stands for.",
       },
     ],
@@ -92,37 +61,37 @@ export const solutionTabs = [
     items: [
       {
         title: "Smart Gallery",
-        image: images.smartGallery,
+        image: sanity + "f36170289671191793a9097179bcbf56f9f62575-716x958.webp",
         text: "Your archive, new designs and saved references, searchable in one place.",
       },
       {
         title: "Moodboard",
-        image: images.moodboard,
+        image: sanity + "8df9319fd704fbef619c0e03ab06451f5252d5fa-716x958.jpg",
         text: "Moodboards of trends, fabrics, key shapes and colour codes, assembled in minutes.",
       },
       {
         title: "Sketch to Render",
-        image: images.sketchToRender,
+        image: sanity + "50cf797b9396369b5148b2068b7b49e4297c63ec-716x958.jpg",
         text: "Turn a hand sketch into a rendered, photoreal design in your own fabrics and palette.",
       },
       {
         title: "Prints & Graphics",
-        image: images.prints,
+        image: sanity + "d2b3ce06a591e24c8033c74e06bba8cd0d07c35d-716x958.jpg",
         text: "Generate new prints from any design, in your brand palette and ready for repeat.",
       },
       {
         title: "Design Collection Planning",
-        image: images.collectionPlanning,
+        image: sanity + "14da379c1774450aa5469381df1a8df69696f27e-716x958.webp",
         text: "Plan a whole collection by category, silhouette and colour, with every look accounted for.",
       },
       {
         title: "Variations of Bestsellers",
-        image: images.bestsellers,
+        image: sanity + "7b7a7002909cc354fe154e27d89795934ab9e3e8-716x958.jpg",
         text: "Rework your best-selling styles in new colourways, fabrics and details, without losing the original.",
       },
       {
         title: "Vibe Design",
-        image: images.vibeDesign,
+        image: sanity + "25f2f5e68424e64cb0a41bb2fb500bfd110aa361-960x1280.jpg",
         text: "Describe a mood and explore the silhouettes, textures and styling that belong to it.",
       },
     ],
@@ -133,32 +102,32 @@ export const solutionTabs = [
     items: [
       {
         title: "Technical Drawing",
-        image: images.technicalDrawing,
+        image: sanity + "8b4e7ba7b810affdd1b78a073b77f1b70eefbf1b-1200x1600.webp",
         text: "Generate precise technical drawings of every garment, exportable as vectors.",
       },
       {
         title: "Tech Pack",
-        image: images.techPack,
+        image: sanity + "04971e479501075a2e2d4ccfe2f4da72c15706ec-1200x1600.webp",
         text: "Automated tech packs, from first sketch to factory floor.",
       },
       {
         title: "AI Pattern",
-        image: images.aiPattern,
+        image: sanity + "ada0f0120989e493e783d55addedd178d5e243de-1200x1600.webp",
         text: "Pattern blocks and grading generated from the design, ready for the first sample.",
       },
       {
         title: "Smart Decision",
-        image: images.smartDecision,
+        image: sanity + "bca7a5ffe5fa16ba3d9128f260629e3d80efddcf-1085x1450.webp",
         text: "Fabric, trim and construction recommendations, costed against the brief you actually wrote.",
       },
       {
         title: "PLM & Systems Integration",
-        image: images.plm,
+        image: sanity + "fa54dec4507ac310f4d46b939648970241a803a2-1086x1448.webp",
         text: "Connect ARTISO to the PLM, ERP and supplier systems your teams already run.",
       },
       {
         title: "Connect with Suppliers",
-        image: images.campaigns,
+        image: sanity + "5090f2ea680f7d47be3e415af2fed0b8bea28099-720x960.jpg",
         text: "Share tech packs, comments and approvals with suppliers in a single thread.",
       },
     ],
@@ -169,17 +138,17 @@ export const solutionTabs = [
     items: [
       {
         title: "Campaigns & Content",
-        image: images.campaigns,
+        image: sanity + "218c1a0babc1068d6d8fdc5b0aa8415265b89095-960x1280.jpg",
         text: "Campaign and e-commerce imagery generated from the actual product, in your brand's visual language.",
       },
       {
         title: "AI Avatar",
-        image: images.aiAvatar,
+        image: sanity + "f40dc952436b3c6659b9ca8ad4278135f3a6f589-1022x1280.jpg",
         text: "Cast, dress and shoot a look on an AI model before a single sample exists.",
       },
       {
         title: "Product on Model",
-        image: images.styling,
+        image: sanity + "90018ccf72ad2f861feda177a7481dfe63e99a6a-716x958.jpg",
         text: "Place finished pieces on a model, styled and lit to match the rest of the season.",
       },
     ],
@@ -190,22 +159,22 @@ export const solutionTabs = [
     items: [
       {
         title: "Styling",
-        image: images.styling,
+        image: sanity + "fe411be2684893442594a7805f7b6cef1bc05279-716x958.jpg",
         text: "Combine real and AI-generated garments into complete looks and styling books.",
       },
       {
         title: "Store Layout and Design",
-        image: images.storeLayout,
+        image: sanity + "0225868809e58fac17799c816302a1c9d2846578-1085x1450.webp",
         text: "Plan floor layouts and fixtures around the collection you are actually selling.",
       },
       {
         title: "Displays and Windows",
-        image: images.windows,
+        image: sanity + "fd4ade9dc76f4e89e648497dcd6de1ed1eb420f4-1085x1450.webp",
         text: "Visualise windows and in-store displays before a single fixture is built.",
       },
       {
         title: "B2B Product Catalog",
-        image: images.b2bCatalog,
+        image: sanity + "a8b92e1955bfbc9c26fa1e3d23fac2564fa1f17e-900x1204.jpg",
         text: "Build a wholesale catalogue from the same designs, with your line sheet and imagery.",
       },
     ],
@@ -213,14 +182,46 @@ export const solutionTabs = [
 ];
 
 export const workflow = [
-  { title: "Brand DNA", text: "Your house codes, in every silhouette and look, evolving with you." },
-  { title: "Archive", text: "Digitize past collections to inspire your next designs." },
-  { title: "Smart Gallery", text: "Every image, design and reference, ready for next season." },
-  { title: "Moodboard", text: "Moodboards of trends, fabrics, key shapes and color codes." },
-  { title: "Design Development", text: "Turn a sketch or prompt into designs, in endless variations." },
-  { title: "Prints & Graphics", text: "Generate new prints from any design, in your brand palette." },
-  { title: "Tech Pack", text: "Automated tech packs, from first sketch to factory floor." },
-  { title: "Campaigns & Content", text: "Campaign and e-commerce images, true to every product." },
+  {
+    title: "Brand DNA",
+    text: "Your house codes, in every silhouette and look, evolving with you.",
+    image: sanity + "1e4a55db0bd317b999b6fff13df785baa48b3718-896x1200.webp",
+  },
+  {
+    title: "Archive",
+    text: "Digitize past collections to inspire your next designs.",
+    image: sanity + "22af82041ec12517f7070b7eccab24a721fedde5-896x1200.webp",
+  },
+  {
+    title: "Smart Gallery",
+    text: "Every image, design and reference, ready for next season.",
+    image: sanity + "24be2a97fa90c2c65c9b7329fa834a7a1cb115f9-896x1200.webp",
+  },
+  {
+    title: "Moodboard",
+    text: "Moodboards of trends, fabrics, key shapes and color codes.",
+    image: sanity + "27410fa2dd23bb3375a826d1abf6d5825c700a4d-896x1200.webp",
+  },
+  {
+    title: "Design Development",
+    text: "Turn a sketch or prompt into designs, in endless variations.",
+    image: sanity + "2bbbb51b987c2a17a36622b8baf0751d29cfcf93-805x1200.webp",
+  },
+  {
+    title: "Prints & Graphics",
+    text: "Generate new prints from any design, in your brand palette.",
+    image: sanity + "2d478c985bbbae826e8e6f9e9974e6445e1cb648-900x1200.webp",
+  },
+  {
+    title: "Tech Pack",
+    text: "Automated tech packs, from first sketch to factory floor.",
+    image: sanity + "31b735a311ba881a44675962c849838b65b32434-805x1200.webp",
+  },
+  {
+    title: "Campaigns & Content",
+    text: "Campaign and e-commerce images, true to every product.",
+    image: sanity + "3307d63c51891bc62a566b89cf617318899d68eb-896x1200.webp",
+  },
 ];
 
 export const layers = [
@@ -263,11 +264,35 @@ export const stats = [
   },
 ];
 
-export const brands = [
-  { name: "RCL", style: "tight" },
-  { name: "Westside", style: "serif" },
-  { name: "MAS", style: "tight", note: "Change is Courage" },
-  { name: "Trent Limited", style: "wide" },
+export const brandLogos = [
+  sanity + "0db27d0d88d9c573e023861dd76c644a0015f933-390x231.png",
+  sanity + "032fe79d1b5765846056fd45d2e800e4d12b45c4-584x154.png",
+  sanity + "38129dc31227a3811e934ff6fe4a06fe3365086a-487x185.png",
+  sanity + "7116c7f5a6b1b2e49dcc2ee5a2c5e5201bdf645a-369x244.png",
+  sanity + "64b40749b03fd6ce6a8e8b2b87f6192958746b15-494x182.png",
+  sanity + "0090b904e5b88b790c09db139ffd5c61895f0550-634x142.png",
+  sanity + "aee460c790e438b60bb545ae912d90430d4df400-721x125.png",
+  sanity + "531b41f45b7ca364bf956db4a548eb6e5019afa5-388x232.png",
+  sanity + "11950861434396f5ff1757b36b15e3f9bc0e3a7c-582x155.png",
+  sanity + "340d7628500e8f40cc3d4d5770828a96cdf3c796-357x252.png",
+  sanity + "f22886102b2cbdc8706fcdd986416deb19fb54a2-719x125.png",
+  sanity + "8062d081cf54c09ff48cebe40240f8bac7876931-811x111.png",
+  sanity + "a71925ef66840083e8c710c0a82fba33f531381c-767x117.png",
+  sanity + "97fe38da9a6d8d2a1572b5beac144a843813ef67-602x150.png",
+  sanity + "2804acc30eb0496a1f82f5792f18a712400bc2e6-595x151.png",
+];
+
+export const pressLogos = [
+  sanity + "a67ea6c389b7f31ddfe5846842d821f8caa725f3-458x120.png",
+  sanity + "2704328c5ffba2976e5a6456f4ed917dac33d808-548x120.png",
+  sanity + "8489a1f6a2c437bb7baa62e03c15ef4bfaaef6c7-522x120.png",
+  sanity + "e030c4b48ff45851f862bbc098716840414568ea-1393x120.png",
+  sanity + "80519256f2ae59e3d33dfa3fa5d7696d82c52f3e-1034x120.png",
+  sanity + "fb2f101e56d095b887032e6201bed7bd17987035-558x120.png",
+  sanity + "732da24f28b967c2110cb6d59032df65686d1fa4-528x120.png",
+  sanity + "22b56291e43a624b7d1c666fa7a4c1a230c96fb2-363x120.png",
+  sanity + "98f376b01fffb2cfa9c2dd05d9a23d41acf37259-850x94.png",
+  sanity + "40ff2106441b26c3dbf33cad818a5745f12bc969-409x120.png",
 ];
 
 export const testimonials = [
