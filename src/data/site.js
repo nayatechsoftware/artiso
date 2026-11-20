@@ -216,7 +216,7 @@ export const workflow = [
   { title: "Brand DNA", text: "Your house codes, in every silhouette and look, evolving with you." },
   { title: "Archive", text: "Digitize past collections to inspire your next designs." },
   { title: "Smart Gallery", text: "Every image, design and reference, ready for next season." },
-  { title: "Moodboard", text: "Moodboards of trends, fabrics, key shapes and colour codes." },
+  { title: "Moodboard", text: "Moodboards of trends, fabrics, key shapes and color codes." },
   { title: "Design Development", text: "Turn a sketch or prompt into designs, in endless variations." },
   { title: "Prints & Graphics", text: "Generate new prints from any design, in your brand palette." },
   { title: "Tech Pack", text: "Automated tech packs, from first sketch to factory floor." },
@@ -268,32 +268,8 @@ export const brands = ["GANNI", "MANGO", "ASOS", "TRENT", "DEICHMANN", "TATA"];
 export const testimonials = [
   {
     quote:
-      "What convinced us is that ARTISO starts from the brand rather than the tool. You can feel the house codes in every image it produces.",
+      "Taste is what makes a brand distinctive. AI can't replace it, but it can give talented creative teams extraordinary leverage. ARTISO is building the infrastructure for that, from inside fashion.",
     name: "Nicolaj Reffstrup",
     role: "Founder and former CEO of GANNI",
-  },
-  {
-    quote:
-      "It closes the gap between the creative and the commercial. The same reference becomes a sketch, a tech pack and a campaign without losing its intent.",
-    name: "Alejandra Mur",
-    role: "Fashion Business Strategist, ex-MANGO & ASOS",
-  },
-  {
-    quote:
-      "Our archive finally works the way we always hoped. A silhouette from five seasons ago is a starting point again, not a folder nobody opens.",
-    name: "Ana Montero",
-    role: "Senior Designer, Trent Limited, Tata Group India",
-  },
-  {
-    quote:
-      "Technical drawings and tech packs used to take days of back and forth. Now they are precise, consistent and ready for the supplier in one sitting.",
-    name: "Almudena Pando",
-    role: "Head Designer, Trent Limited, Tata Group India",
-  },
-  {
-    quote:
-      "We tested it on a live capsule. The speed was expected. The consistency of the brand language across every output was the surprise.",
-    name: "Burak Yilmaz",
-    role: "Creative AI Lead, Deichmann",
   },
 ];
