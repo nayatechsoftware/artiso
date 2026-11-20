@@ -46,14 +46,9 @@ export default function DemoForm() {
               See ARTISO on your own collection. We will walk your team through brand DNA,
               design development and the tech pack in a single session.
             </p>
-            <div className="mt-10 border-t border-black/12 pt-5">
-              <p className="eyebrow">General enquiries</p>
-              <a
-                href="mailto:hello@artiso.ai"
-                className="mt-2 inline-block text-lg font-light tracking-tight text-black underline decoration-black/20 underline-offset-4 transition-colors hover:decoration-black"
-              >
-                hello@artiso.ai
-              </a>
+            <div className="mt-10 flex items-center gap-3 border-t border-black/12 pt-5">
+              <span className="h-1.5 w-1.5 rounded-full bg-black" />
+              <span className="eyebrow">30 minute walkthrough, your own collection</span>
             </div>
           </Reveal>
         </div>

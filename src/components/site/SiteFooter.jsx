@@ -76,8 +76,8 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="overflow-hidden pb-6">
-          <span className="wordmark block w-full text-[clamp(4rem,17.5vw,17rem)] leading-[0.72] text-black">
+        <div className="overflow-hidden pb-4 pt-8">
+          <span className="wordmark block w-full text-[clamp(2.6rem,12.4vw,11.5rem)] leading-[1.18] text-black">
             ARTISO
           </span>
         </div>
