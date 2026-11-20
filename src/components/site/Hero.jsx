@@ -1,20 +1,22 @@
-import HeroCollage from "@/components/site/HeroCollage";
+import ScatteredCollage from "@/components/site/ScatteredCollage";
 
 export default function Hero() {
   return (
-    <section
-      id="top"
-      className="relative flex min-h-[100svh] w-full flex-col justify-center overflow-hidden bg-[#f4f4f4] pb-20 pt-28 md:pb-24"
-    >
-      <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center lg:pl-[12%]">
-        <HeroCollage />
+    <section id="top" className="relative h-[130svh] w-full overflow-hidden bg-[#f4f4f4]">
+      <ScatteredCollage />
+
+      <div className="pointer-events-none absolute left-5 top-[92svh] z-20 hidden -translate-y-full flex-col items-center gap-3 md:flex lg:left-[9vw]">
+        <span className="cue-line h-10 w-px bg-black/30" />
+        <span className="[writing-mode:vertical-rl] text-[9px] uppercase tracking-[0.32em] text-black/45">
+          Scroll
+        </span>
       </div>
 
-      <span className="pointer-events-none absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 [writing-mode:vertical-rl] text-[9px] uppercase tracking-[0.32em] text-black/40 xl:block">
+      <span className="pointer-events-none absolute right-3 top-[88svh] z-20 hidden -translate-y-full rotate-180 [writing-mode:vertical-rl] text-[9px] uppercase tracking-[0.32em] text-black/40 xl:block">
         Visual content AI-generated with ARTISO
       </span>
 
-      <p className="fade-up pointer-events-none absolute bottom-8 right-5 z-20 max-w-[80%] text-right font-normal leading-[1.15] tracking-[-0.02em] text-[#121212] [font-size:clamp(28px,2.4vw,46px)] md:bottom-10 md:right-[20%]">
+      <p className="pointer-events-none absolute right-5 top-[92svh] z-20 -translate-y-full text-right text-[26px] font-normal leading-[1.15] tracking-[-0.02em] text-[#121212] md:right-[35%] md:text-[32px]">
         Shaping the Future
         <br />
         of Fashion

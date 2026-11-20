@@ -236,6 +236,25 @@
     animation: collageIn 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
   }
 
+  .collage-fade {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 85%, transparent 100%);
+  }
+
+  .tile-in {
+    animation: tileIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .pill-hero {
+    background: #c9d4db;
+    font-size: 14px;
+    box-shadow: 0 18px 34px -22px rgba(120, 145, 165, 0.85);
+  }
+  .pill-hero:hover {
+    background: #121212;
+    color: #f4f4f4;
+  }
+
   .route-fade {
     animation: routeFade 0.4s ease both;
   }
@@ -369,6 +388,17 @@
   }
 }
 
+@keyframes tileIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes heroRise {
   from {
     opacity: 0;
@@ -393,6 +423,7 @@
   .intro-word,
   .collage-in,
   .route-fade,
+  .tile-in,
   .hero-rise {
     animation: none !important;
   }

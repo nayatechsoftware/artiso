@@ -49,7 +49,7 @@ export default function SiteHeader() {
         {/* Expanded lockup: large serif wordmark, stacked nav and frosted pill */}
         <div
           className={cn(
-            "shell origin-top-left transition-all duration-500 ease-out",
+            "shell origin-top-left transition-all duration-500 ease-out lg:pl-[9vw]",
             expanded ? "pointer-events-auto opacity-100" : "pointer-events-none -translate-y-4 opacity-0"
           )}
           aria-hidden={!expanded}
@@ -65,14 +65,14 @@ export default function SiteHeader() {
                   key={link.label}
                   to={link.to}
                   hash={link.hash}
-                  className="link-underline w-fit text-[11px] uppercase tracking-[0.24em] text-black/60 transition-colors duration-300 hover:text-black"
+                  className="link-underline w-fit text-[16px] leading-none text-[#2b2b2b]/85 transition-colors duration-300 hover:text-[#2b2b2b]"
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
 
-            <Link to="/book-demo" className="pill pill-frost mt-7 hidden w-fit lg:inline-flex">
+            <Link to="/book-demo" className="pill pill-hero mt-7 hidden w-fit lg:inline-flex">
               Book Your Demo
             </Link>
 
