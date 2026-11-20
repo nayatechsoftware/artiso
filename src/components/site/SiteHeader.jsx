@@ -80,7 +80,7 @@ export default function SiteHeader() {
                 key={link.label}
                 to={link.to}
                 hash={link.hash}
-                className="nav-link px-3 text-[15px] font-medium leading-none text-[#222]/70 transition-colors duration-200 ease-out hover:text-[#121212]"
+                className="nav-link px-3 text-[15px] font-normal leading-none text-[#1a1a1a]/70 transition-colors duration-200 ease-out hover:text-[#121212]"
               >
                 {link.label}
               </Link>
@@ -88,7 +88,7 @@ export default function SiteHeader() {
           </nav>
 
           <div className="flex items-center justify-self-end gap-3">
-            <Link to="/book-demo" className="pill hidden !px-6 !py-3 !text-[10px] lg:inline-flex">
+            <Link to="/book-demo" className="pill hidden !px-6 !py-3 lg:inline-flex">
               Book Your Demo
             </Link>
             <button

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import Wordmark from "@/components/site/Wordmark";
-import { heroCollage } from "@/data/site";
+import HeroCollage from "@/components/site/HeroCollage";
 
 const LINKS = [
   { label: "Solutions", to: "/", hash: "platform" },
@@ -98,14 +98,7 @@ export default function Hero() {
           </Link>
         </nav>
 
-        <div className="hero-collage">
-          <img
-            className="tile"
-            style={{ "--i": 0 }}
-            src={heroCollage}
-            alt="A collage of fashion photographs and pattern drawings"
-          />
-        </div>
+        <HeroCollage />
 
         <div className="hero-foot">
           <div className="hero-cue" ref={cueRef}>
@@ -120,7 +113,10 @@ export default function Hero() {
         </div>
       </div>
 
-      <span className="hero-credit">Visual content AI-generated with ARTISO</span>
+      <span className="hero-credit">
+        <span className="credit-line" aria-hidden="true" />
+        <span className="credit-text">Visual content AI-generated with ARTISO</span>
+      </span>
     </section>
   );
 }
