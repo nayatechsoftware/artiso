@@ -71,83 +71,102 @@ export default function HeroCollage() {
     let dirty = true;
 
     const build = () => {
-      const rect = wrap.getBoundingClientRect();
+      const rect = canvas.getBoundingClientRect();
       W = Math.max(1, Math.round(rect.width));
       H = Math.max(1, Math.round(rect.height));
+      if (W < 40 || H < 40) return false;
+
       canvas.width = Math.round(W * dpr);
       canvas.height = Math.round(H * dpr);
       scene.width = canvas.width;
       scene.height = canvas.height;
       travel = Math.max(1, wrap.offsetTop + H * 0.85);
 
-      const rnd = seeded(7331);
-      const cell = Math.max(48, W / 8);
-      const cols = Math.ceil(W / cell) + 1;
-      const rows = Math.ceil(H / cell) + 1;
-      const cx = W * 0.5;
-      const cy = H * 0.52;
-      const cw = W * 0.68;
+      const rnd = seeded(4177);
+      const cx = W * 0.4;
+      const cy = H * 0.42;
+      const cw = W * 0.22;
       const ch = cw * (1426 / 1600);
       centre = { x: cx - cw / 2, y: cy - ch / 2, w: cw, h: ch, p: 0 };
 
+      const count = Math.max(80, Math.round((W * H) / 3600));
+      const rx = Math.max(cx, W - cx);
+      const ry = Math.max(cy, H - cy);
+      const golden = Math.PI * (3 - Math.sqrt(5));
+      const sizeScale = Math.max(0.62, Math.min(1, W / 900));
+
       tiles = [];
-      let n = 0;
-      for (let r = 0; r < rows; r += 1) {
-        for (let c = 0; c < cols; c += 1) {
-          const x = c * cell + (rnd() - 0.5) * cell * 0.65;
-          const y = r * cell + (rnd() - 0.5) * cell * 0.65;
-          const w = 40 + rnd() * 50;
-          const h = w * 1.34;
-          const overCentre =
-            x + w > centre.x &&
-            x < centre.x + centre.w &&
-            y + h > centre.y &&
-            y < centre.y + centre.h;
-          if (overCentre && rnd() < 0.8) continue;
-          const cropW = 180 + rnd() * 380;
-          const cropH = cropW * 1.34;
-          tiles.push({
-            x,
-            y,
-            w,
-            h,
-            sx: rnd() * Math.max(1, 1600 - cropW),
-            sy: rnd() * Math.max(1, 1426 - cropH),
-            sw: Math.min(cropW, 1600),
-            sh: Math.min(cropH, 1426),
-            caption: CAPTIONS[n % CAPTIONS.length],
-            delay: 60 + (Math.hypot(x - cx, y - cy) / Math.max(W, H)) * 520 + rnd() * 90,
-            p: 0,
-            scale: 1,
-          });
-          n += 1;
-        }
+      for (let i = 0; i < count; i += 1) {
+        const t = Math.sqrt((i + 0.6) / count);
+        const a = i * golden + 0.7;
+        const w = (40 + rnd() * 50) * sizeScale;
+        const h = w * 1.34;
+        const x = cx + Math.cos(a) * rx * t - w / 2 + (rnd() - 0.5) * 26;
+        const y = cy + Math.sin(a) * ry * t - h / 2 + (rnd() - 0.5) * 26;
+        if (x + w < -70 || x > W + 70 || y + h < -90 || y > H + 90) continue;
+
+        const cropW = 180 + rnd() * 420;
+        const cropH = cropW * 1.34;
+        tiles.push({
+          x,
+          y,
+          w,
+          h,
+          sx: rnd() * Math.max(1, 1600 - cropW),
+          sy: rnd() * Math.max(1, 1426 - cropH),
+          sw: Math.min(cropW, 1600),
+          sh: Math.min(cropH, 1426),
+          paper: rnd() < 0.12,
+          caption: CAPTIONS[i % CAPTIONS.length],
+          delay: 40 + t * 560 + rnd() * 90,
+          p: 0,
+          scale: 1,
+        });
+      }
+      return true;
+    };
+
+    const tileArt = (g, tile, w, h) => {
+      if (tile.paper) {
+        g.fillStyle = "#eceae6";
+        g.fillRect(0, 0, w, h);
+        const inset = w * 0.09;
+        g.drawImage(img, tile.sx, tile.sy, tile.sw, tile.sh, inset, inset, w - inset * 2, h - inset * 2);
+      } else {
+        g.drawImage(img, tile.sx, tile.sy, tile.sw, tile.sh, 0, 0, w, h);
       }
     };
 
     const paint = (tile, now) => {
-      const p = clamp01((now - start - tile.delay) / 520);
+      const p = clamp01((now - start - tile.delay) / 340);
       tile.p = p;
-      const cx = tile.x + tile.w / 2;
-      const cy = tile.y + tile.h / 2;
+      const tx = tile.x + tile.w / 2;
+      const ty = tile.y + tile.h / 2;
+
       sctx.save();
-      sctx.translate(cx, cy);
+      sctx.translate(tx, ty);
       sctx.scale(tile.scale, tile.scale);
-      sctx.translate(-cx, -cy);
+      sctx.translate(-tx, -ty);
+
+      sctx.fillStyle = "rgba(244,244,244,0.96)";
+      sctx.fillRect(tile.x - 1, tile.y - 1, tile.w + 2, tile.h + 2);
 
       if (p >= 1) {
-        sctx.drawImage(img, tile.sx, tile.sy, tile.sw, tile.sh, tile.x, tile.y, tile.w, tile.h);
+        sctx.save();
+        sctx.translate(tile.x, tile.y);
+        tileArt(sctx, tile, tile.w, tile.h);
+        sctx.restore();
       } else {
-        const tw = Math.max(1, Math.ceil(tile.w));
-        const th = Math.max(1, Math.ceil(tile.h));
+        const tw = Math.max(1, Math.round(tile.w));
+        const th = Math.max(1, Math.round(tile.h));
         bctx.setTransform(1, 0, 0, 1, 0, 0);
         bctx.clearRect(0, 0, buf.width, buf.height);
-        bctx.drawImage(img, tile.sx, tile.sy, tile.sw, tile.sh, 0, 0, tw, th);
+        tileArt(bctx, tile, tw, th);
         bctx.globalCompositeOperation = "destination-in";
         bctx.fillStyle = dots[Math.round(p * 8)];
         bctx.fillRect(0, 0, tw, th);
         bctx.globalCompositeOperation = "source-over";
-        sctx.drawImage(buf, 0, 0, tw, th, tile.x, tile.y, tile.w, tile.h);
+        sctx.drawImage(buf, 0, 0, tw, th, tile.x, tile.y, tw, th);
       }
       sctx.restore();
     };
@@ -158,7 +177,9 @@ export default function HeroCollage() {
 
       const cp = clamp01((now - start - 40) / 720);
       centre.p = cp;
-      sctx.globalAlpha = 0.5 + cp * 0.5;
+      sctx.globalAlpha = 0.45 + cp * 0.55;
+      sctx.fillStyle = "rgba(244,244,244,0.96)";
+      sctx.fillRect(centre.x - 1, centre.y - 1, centre.w + 2, centre.h + 2);
       sctx.drawImage(img, centre.x, centre.y, centre.w, centre.h);
       sctx.globalAlpha = 1;
 
@@ -197,7 +218,9 @@ export default function HeroCollage() {
     const frame = () => {
       raf = null;
       const now = performance.now();
-      let moving = false;
+      const elapsed = now - start;
+
+      let moving = elapsed < 2400;
 
       tiles.forEach((tile) => {
         const target = hovered === tile ? 2.5 : 1;
@@ -216,14 +239,14 @@ export default function HeroCollage() {
       if (Math.abs(next - dissolve) > 0.002) moving = true;
       dissolve = next;
 
-      drawScene(now);
-      composite();
-      canvas.style.transform = `translate3d(0, ${Math.round(scrollY * 0.12)}px, 0)`;
-
       if (moving || dirty) {
         dirty = false;
         raf = requestAnimationFrame(frame);
       }
+
+      drawScene(now);
+      composite();
+      canvas.style.transform = `translate3d(0, ${Math.round(scrollY * 0.12)}px, 0)`;
     };
 
     const kick = () => {
@@ -272,14 +295,25 @@ export default function HeroCollage() {
       kick();
     };
 
-    img.onload = () => {
-      build();
+    let tries = 0;
+    let stopped = false;
+    const boot = () => {
+      if (stopped) return;
+      if (!build()) {
+        tries += 1;
+        if (tries < 30) window.setTimeout(boot, 120);
+        return;
+      }
       start = performance.now();
+      dissolve = clamp01((window.scrollY || 0) / travel);
       canvas.classList.add("is-ready");
       dirty = true;
-      kick();
+      frame();
     };
+
+    img.onload = boot;
     img.src = SRC;
+    if (img.complete && img.naturalWidth) boot();
 
     canvas.addEventListener("pointermove", onMove);
     canvas.addEventListener("pointerleave", onLeave);
@@ -287,6 +321,7 @@ export default function HeroCollage() {
     window.addEventListener("resize", onResize);
 
     return () => {
+      stopped = true;
       img.onload = null;
       canvas.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerleave", onLeave);

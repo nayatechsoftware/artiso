@@ -511,6 +511,7 @@
   .hero-mark {
     grid-column: 1 / -1;
     width: calc(var(--C) * 0.595);
+    margin-inline-start: calc(var(--C) * -0.0615);
   }
   .hero-nav {
     display: block;
@@ -847,6 +848,13 @@
 }
 .hero-collage canvas.is-ready {
   opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .hero-collage canvas {
+    top: calc(var(--C) * -0.0722);
+    height: calc(100% + var(--C) * 0.0722);
+  }
 }
 
 @media (max-width: 1023.98px) {
