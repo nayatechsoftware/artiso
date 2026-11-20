@@ -26,8 +26,7 @@ export default function SiteHeader() {
     }
 
     const onScroll = () => {
-      const hero = document.getElementById("hero");
-      setVisible(hero ? hero.getBoundingClientRect().bottom <= 60 : window.scrollY > 60);
+      setVisible(window.scrollY > window.innerHeight * 0.35);
     };
 
     onScroll();
@@ -63,10 +62,8 @@ export default function SiteHeader() {
 
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-40 h-[60px] border-b border-[#e0e0e0] bg-[#f4f4f4]/90 backdrop-blur-[12px] transition-all duration-300 ease-out",
-          visible
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-full opacity-0"
+          "fixed inset-x-0 top-0 z-40 h-16 border-b border-black/10 bg-[#f4f4f4] transition-transform duration-500 ease-out",
+          visible ? "translate-y-0" : "pointer-events-none -translate-y-full"
         )}
       >
         <div className="shell grid h-full grid-cols-[1fr_auto_1fr] items-center gap-4">
@@ -80,7 +77,7 @@ export default function SiteHeader() {
                 key={link.label}
                 to={link.to}
                 hash={link.hash}
-                className="nav-link px-3 text-[15px] font-normal leading-none text-[#1a1a1a]/70 transition-colors duration-200 ease-out hover:text-[#121212]"
+                className="nav-link px-3 text-[16px] font-medium leading-none text-[#171717]/70 transition-colors duration-200 ease-out hover:text-[#171717]"
               >
                 {link.label}
               </Link>

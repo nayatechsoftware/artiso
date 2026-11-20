@@ -1,16 +1,14 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import Wordmark from "@/components/site/Wordmark";
-import HeroCollage from "@/components/site/HeroCollage";
+import { heroCollage } from "@/data/site";
 
 const LINKS = [
   { label: "Solutions", to: "/", hash: "platform" },
-  { label: "About us", to: "/about-us" },
+  { label: "About Us", to: "/about-us" },
   { label: "News", to: "/news" },
   { label: "Contact", to: "/", hash: "contact" },
 ];
-
-const PIN_TOP = 72;
 
 export default function Hero() {
   const heroRef = useRef(null);
@@ -28,27 +26,9 @@ export default function Hero() {
     let frame = null;
     const update = () => {
       frame = null;
-      const heroRect = hero.getBoundingClientRect();
-      const pinned = nav.hasAttribute("data-pinned");
 
-      if (!pinned) {
-        nav.style.setProperty("--pin-left", `${Math.round(nav.getBoundingClientRect().left)}px`);
-      }
-
-      const stage = nav.parentElement;
-      const navTopInHero =
-        stage.getBoundingClientRect().top - heroRect.top + nav.offsetTop;
-
-      if (window.innerWidth >= 1024) {
-        if (heroRect.top + navTopInHero < PIN_TOP) nav.setAttribute("data-pinned", "");
-        else nav.removeAttribute("data-pinned");
-
-        if (heroRect.bottom < window.innerHeight * 0.25) nav.setAttribute("data-away", "");
-        else nav.removeAttribute("data-away");
-      } else {
-        nav.removeAttribute("data-pinned");
-        nav.removeAttribute("data-away");
-      }
+      if (window.scrollY > window.innerHeight * 0.35) nav.setAttribute("data-away", "");
+      else nav.removeAttribute("data-away");
 
       const cue = cueRef.current;
       if (cue && !supportsScrollTimeline) {
@@ -98,7 +78,12 @@ export default function Hero() {
           </Link>
         </nav>
 
-        <HeroCollage />
+        <div className="hero-collage">
+          <img
+            src={heroCollage}
+            alt="A collage of fashion photographs and pattern drawings"
+          />
+        </div>
 
         <div className="hero-foot">
           <div className="hero-cue" ref={cueRef}>
@@ -111,12 +96,22 @@ export default function Hero() {
             <h1 id="hero-title">Shaping the Future of Fashion</h1>
           </div>
         </div>
+
+        <span className="hero-credit">
+          <span className="credit-text">Visual content AI-generated with</span>
+          <Wordmark className="credit-mark" />
+        </span>
       </div>
 
-      <span className="hero-credit">
-        <span className="credit-line" aria-hidden="true" />
-        <span className="credit-text">Visual content AI-generated with ARTISO</span>
-      </span>
+      <div className="hero-copy">
+        <p className="hero-lead">
+          The AI Operating System that connects the way fashion teams think, create and bring
+          ideas to life
+        </p>
+        <Link to="/book-demo" className="pill">
+          Book Your Demo
+        </Link>
+      </div>
     </section>
   );
 }
