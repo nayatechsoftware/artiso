@@ -354,15 +354,41 @@
   display: block;
 }
 
-.hero-collage {
+.hero-stack {
+  position: relative;
   width: 100%;
   margin-top: 20px;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  transform: translateY(var(--stack-shift, 0px));
+  opacity: var(--stack-fade, 1);
+  will-change: transform, opacity;
 }
-.hero-collage img {
-  width: 100%;
-  height: auto;
+.hero-stack-deck {
+  position: relative;
+  width: clamp(210px, 62vw, 340px);
+  aspect-ratio: 340 / 450;
+}
+.hero-stack-slot {
+  position: absolute;
+  inset: 0;
+  animation: stackUp 0.8s var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 0.18s + 0.1s);
+}
+.hero-stack-card {
+  position: absolute;
+  inset: 0;
   display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 28px 60px -34px rgba(18, 18, 18, 0.55), 0 2px 10px -4px rgba(18, 18, 18, 0.16);
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1), scale 0.9s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, opacity;
+}
+.hero-stack-card.is-front {
+  animation: stackSettle 0.9s var(--ease-out) both;
 }
 
 .hero-nav {
@@ -519,18 +545,18 @@
     padding-top: calc(var(--C) * 0.081);
     align-self: start;
   }
-  .hero-collage {
+  .hero-stack {
     grid-area: 2 / 2;
     width: calc(100% + 20px);
     max-width: none;
     margin-top: -9px;
     height: max(360px, calc(100svh - var(--pad-top) - var(--C) * 0.1443 + 9px));
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-block-start: clamp(12px, 3vh, 48px);
   }
-  .hero-collage img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: left top;
+  .hero-stack-deck {
+    width: clamp(260px, 24vw, 340px);
   }
   .hero-foot {
     display: contents;
@@ -602,10 +628,22 @@
   }
 }
 
-/* COLLAGE image entrance */
-.hero-collage img {
-  animation: imgIn 1s var(--ease-out) backwards;
+@keyframes stackUp {
+  from {
+    opacity: 0;
+    translate: 0 64px;
+  }
 }
+
+@keyframes stackSettle {
+  from {
+    scale: 1.02;
+  }
+  to {
+    scale: 1;
+  }
+}
+
 @keyframes unveil {
   0% {
     clip-path: inset(0 100% 0 0);
@@ -649,11 +687,6 @@
     animation: stageUnder linear both;
     animation-timeline: view();
     animation-range: exit;
-  }
-  .hero-collage {
-    animation: itemsOut linear both;
-    animation-timeline: view();
-    animation-range: exit 40% exit 75%;
   }
 }
 @keyframes titleUp {
@@ -818,102 +851,18 @@
   .tile-in,
   .hero-rise,
   .cue-run,
-  .hero-collage img,
+  .hero-stack-slot,
+  .hero-stack-card,
   .hero-nav .nav-line {
     animation: none !important;
+  }
+  .hero-stack {
+    transform: none !important;
+    opacity: 1 !important;
   }
   .hero-nav[data-away] .nav-line {
     opacity: 0;
   }
-}
-
-/* ---------- HERO COLLAGE CANVAS ---------- */
-.hero-collage canvas {
-  --fade: clamp(72px, 6cqw, 240px);
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: none;
-  transition: opacity 0.3s var(--ease-out);
-  will-change: transform;
-  -webkit-mask-image: linear-gradient(to top, transparent, #000 var(--fade)),
-    linear-gradient(to right, transparent, #000 var(--fade));
-  mask-image: linear-gradient(to top, transparent, #000 var(--fade)),
-    linear-gradient(to right, transparent, #000 var(--fade));
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-}
-.hero-collage canvas.is-ready {
-  opacity: 1;
-}
-
-@media (min-width: 1024px) {
-  .hero-collage canvas {
-    top: calc(var(--C) * -0.0722);
-    height: calc(100% + var(--C) * 0.0722);
-  }
-}
-
-@media (max-width: 1023.98px) {
-  .hero-collage canvas {
-    -webkit-mask-image: linear-gradient(to top, transparent, #000 14%),
-      linear-gradient(to right, transparent, #000 8%);
-    mask-image: linear-gradient(to top, transparent, #000 14%),
-      linear-gradient(to right, transparent, #000 8%);
-  }
-}
-
-.collage-cursor {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 4;
-  color: #fff;
-  mix-blend-mode: difference;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s var(--ease-out);
-  will-change: transform;
-}
-.collage-cursor.is-on {
-  opacity: 1;
-}
-.collage-cross {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 17px;
-  height: 17px;
-  translate: -50% -50%;
-}
-.collage-cross::before,
-.collage-cross::after {
-  content: "";
-  position: absolute;
-  background: currentColor;
-}
-.collage-cross::before {
-  left: 50%;
-  top: 0;
-  width: 1px;
-  height: 100%;
-}
-.collage-cross::after {
-  top: 50%;
-  left: 0;
-  height: 1px;
-  width: 100%;
-}
-.collage-caption {
-  position: absolute;
-  left: 15px;
-  top: 12px;
-  font-size: 11px;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
 }
 
 /* ---------- FILM ---------- */
