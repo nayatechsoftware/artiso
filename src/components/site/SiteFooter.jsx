@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Linkedin } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -11,7 +11,6 @@ const navLinks = [
 
 const socials = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/artiso-ai", Icon: Linkedin },
-  { label: "Instagram", href: "https://www.instagram.com/artiso.ai", Icon: Instagram },
 ];
 
 const legalLinks = [
