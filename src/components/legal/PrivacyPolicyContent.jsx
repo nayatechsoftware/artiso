@@ -4,7 +4,7 @@ const privacySections = [
     title: "1. Introduction",
     blocks: [
       {
-        p: "ARTISO (“we”, “our”, or “us”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website artiso.ai, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the “Site”).",
+        p: "ARTISO (“we”, “our”, or “us”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website artiso.org, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the “Site”).",
       },
       {
         p: "Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.",
@@ -62,7 +62,7 @@ const privacySections = [
           },
           {
             strong: "Your consent (Article 6(1)(a)):",
-            p: "our optional newsletter and analytics cookies. Joining the waitlist does not require newsletter consent. You can withdraw newsletter consent at any time by unsubscribing or contacting hello@artiso.ai",
+            p: "our optional newsletter and analytics cookies. Joining the waitlist does not require newsletter consent. You can withdraw newsletter consent at any time by unsubscribing or contacting hello@artiso.org",
           },
           { p: "Compliance with legal obligations" },
           {
@@ -138,7 +138,7 @@ const privacySections = [
         ],
       },
       {
-        p: "If you would like to exercise any of these rights, please contact us at hello@artiso.ai. We will respond to your request within 30 days.",
+        p: "If you would like to exercise any of these rights, please contact us at hello@artiso.org. We will respond to your request within 30 days.",
       },
       {
         p: "You also have the right to lodge a complaint with a data protection supervisory authority: in Spain, the Agencia Española de Protección de Datos (www.aepd.es).",
@@ -217,7 +217,7 @@ const privacySections = [
     title: "10. Job Applicants",
     blocks: [
       {
-        p: "When you apply for a role at ARTISO, employed or freelance, by email to careers@artiso.ai or through one of our posts on LinkedIn, we process your personal data to consider your application. This section explains how; the rest of this policy applies as well.",
+        p: "When you apply for a role at ARTISO, employed or freelance, by email to careers@artiso.org or through one of our posts on LinkedIn, we process your personal data to consider your application. This section explains how; the rest of this policy applies as well.",
       },
       { h3: "What we collect" },
       {
@@ -253,14 +253,14 @@ const privacySections = [
       },
       { h3: "Who sees it" },
       {
-        p: "Only the people involved in hiring for the role. Google Workspace hosts our email, including careers@artiso.ai, as our processor. If you apply through LinkedIn, LinkedIn’s own privacy policy covers what you submit there.",
+        p: "Only the people involved in hiring for the role. Google Workspace hosts our email, including careers@artiso.org, as our processor. If you apply through LinkedIn, LinkedIn’s own privacy policy covers what you submit there.",
       },
       { h3: "How long we keep it" },
       {
         p: "If you aren’t hired, we delete your application within six months of the process for the role closing. If you agree that we keep it for future roles, we keep it for up to two years from your consent, unless you withdraw it sooner. If you join us, your application becomes part of your employee file.",
       },
       {
-        p: "To exercise your rights over your application, write to careers@artiso.ai or hello@artiso.ai (see section 7).",
+        p: "To exercise your rights over your application, write to careers@artiso.org or hello@artiso.org (see section 7).",
       },
     ],
   },
@@ -269,7 +269,7 @@ const privacySections = [
     title: "11. Data Transfers",
     blocks: [
       {
-        p: "We use service providers to operate our website and respond to requests: HubSpot stores form submissions and contact records in its US West (na2) data center; Resend sends confirmation emails; Vercel hosts our website and processes requests; Google Chat delivers internal submission notifications and recovery alerts; Google Workspace hosts our email, including job applications sent to careers@artiso.ai. When a submission fails, its details may be included in an internal recovery alert so our team can follow up.",
+        p: "We use service providers to operate our website and respond to requests: HubSpot stores form submissions and contact records in its US West (na2) data center; Resend sends confirmation emails; Vercel hosts our website and processes requests; Google Chat delivers internal submission notifications and recovery alerts; Google Workspace hosts our email, including job applications sent to careers@artiso.org. When a submission fails, its details may be included in an internal recovery alert so our team can follow up.",
       },
       {
         p: "These providers may process data outside the European Economic Area. HubSpot’s Data Processing Agreement provides transfer safeguards, including the EU–US Data Privacy Framework where applicable and the 2021 Standard Contractual Clauses. Other international transfers are covered by the applicable provider agreements and appropriate safeguards. You may contact us for details of the safeguards used for your data.",
@@ -293,7 +293,7 @@ const privacySections = [
     title: "13. Contact Us",
     blocks: [
       {
-        p: "If you have any questions about this Privacy Policy, please contact us at hello@artiso.ai.",
+        p: "If you have any questions about this Privacy Policy, please contact us at hello@artiso.org.",
       },
     ],
   },

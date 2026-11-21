@@ -110,12 +110,12 @@ function ArticlePage() {
                     <>
                       {" "}
                       <a
-                        href="https://www.artiso.ai/"
+                        href="https://www.artiso.org/"
                         target="_blank"
                         rel="noreferrer"
                         className="underline decoration-black/20 underline-offset-2 hover:text-black"
                       >
-                        www.artiso.ai
+                        www.artiso.org
                       </a>
                     </>
                   )}
@@ -127,10 +127,10 @@ function ArticlePage() {
           <div className="mt-12 border-t border-black/12 pt-6">
             <p className="eyebrow">Media contacts</p>
             <a
-              href="mailto:press@artiso.ai"
+              href="mailto:press@artiso.org"
               className="mt-3 inline-block text-xl font-light tracking-tight text-black underline decoration-black/20 underline-offset-4 transition-colors hover:decoration-black"
             >
-              press@artiso.ai
+              press@artiso.org
             </a>
           </div>
         </div>

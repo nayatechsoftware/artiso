@@ -46,7 +46,7 @@ const cookieSections = [
     title: "Contact",
     blocks: [
       {
-        p: "Questions about this policy: hello@artiso.ai.",
+        p: "Questions about this policy: hello@artiso.org.",
       },
     ],
   },
@@ -88,7 +88,7 @@ export default function CookiePolicyContent() {
 
         <div className="lg:col-span-8">
           <p className="max-w-[68ch] text-[15px] leading-relaxed text-black/60">
-            This policy explains which cookies and similar technologies www.artiso.ai uses, why, and
+            This policy explains which cookies and similar technologies www.artiso.org uses, why, and
             how you can choose. It complements our{" "}
             <a
               href="/privacy-policy"

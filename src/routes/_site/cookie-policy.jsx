@@ -7,7 +7,7 @@ export const Route = createFileRoute("/_site/cookie-policy")({
       { title: "Cookie Policy — ARTISO" },
       {
         name: "description",
-        content: "Which cookies and similar technologies www.artiso.ai uses, why, and how to choose.",
+        content: "Which cookies and similar technologies www.artiso.org uses, why, and how to choose.",
       },
     ],
   }),

@@ -27,10 +27,10 @@ export default function SiteFooter() {
           <div>
             <p className="eyebrow">General enquiries</p>
             <a
-              href="mailto:hello@artiso.ai"
+              href="mailto:hello@artiso.org"
               className="mt-3 inline-block text-[clamp(1.4rem,3vw,2.4rem)] font-light tracking-tight text-black underline decoration-black/15 underline-offset-[6px] transition-colors hover:decoration-black"
             >
-              hello@artiso.ai
+              hello@artiso.org
             </a>
           </div>
           <nav className="flex flex-wrap items-center gap-x-8 gap-y-4">

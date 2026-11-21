@@ -79,10 +79,10 @@ function Careers() {
         <p className="mt-10 text-[15px] leading-relaxed text-black/55">
           Do not see your role here? Write to us:{" "}
           <a
-            href="mailto:careers@artiso.ai"
+            href="mailto:careers@artiso.org"
             className="text-black underline decoration-black/25 underline-offset-4 transition-colors hover:decoration-black"
           >
-            careers@artiso.ai
+            careers@artiso.org
           </a>
         </p>
       </section>
